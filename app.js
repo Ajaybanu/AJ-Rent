@@ -3,12 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const mongoose = require('mongoose')
+const database = require('./config/server')
+const bcrypt = require('bcrypt')
 
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
 
 var app = express();
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
