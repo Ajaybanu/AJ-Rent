@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
+const { wishlist } = require('../controller/user');
 
 
 const userSchema = new mongoose.Schema({
@@ -25,10 +26,29 @@ const userSchema = new mongoose.Schema({
         max:(10),
         
     },
-   
+    cart: [{
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'products'
+        },
+        quantity: {
+          type: Number,
+          default: 1
+        },
+        price:{
+            type:Number,
+            default:0
+        },
+        image:{
+            type:String,
+            required:true
 
-   
-});
+        },
+
+      }],
+     
+    })
+    
 
 
 userSchema.pre('save', async function (next) {

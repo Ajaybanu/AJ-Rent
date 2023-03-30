@@ -1,5 +1,6 @@
  <div class="page-wrapper">
     <main class="main">
+        
             
            
             <div class="pt-2 pb-3">
@@ -75,6 +76,206 @@
             </div><!-- End .bg-gray -->
 
 
-            <div class="mb-5"></div><!-- End .mb-5 -->
-            <div class="container">
+
+
+
+
+             <div class="container">
+                <h2 class="title text-center mb-4">NEW  DOG</h2><!-- End .title text-center -->
+                  {{!-- {{let [dogs,cats] = product}} --}}
+                <div class="products">
+                    <div class="row justify-content-center">
+                         {{#each dog}}
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="product product-7 text-center">
+                                <figure class="product-media">
+                                   
+                                    <a href="product.html">
+                                        <img src="{{this.image}}" alt="Product image" class="product-image">
+                                       
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="col-md-6 col-lg-6 col-xl-6">
+                <h5>{{this.breed}}</h5>
+                <div class="d-flex flex-row">
+                  <div class="text-danger mb-1 me-2">
+
+				<P>Age:{{this.age}}</P>
+				<P>Catagory:{{this.catagory}}</P>
+				<P>{{this.gender}}</P>
+                <h5>{{this.price}}</h5>
+             
+    
+				
+				
+                  </div>
+                
+                </div>
+               
+               
+              
+              </div>
+
+                             
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                        {{/each}}
+                       
+                    </div><!-- End .row -->
+                </div><!-- End .products -->
+
+            </div>
+
+
+
+
+
+
+                <div class="container">
+                <h2 class="title text-center mb-4">NEW  CAT</h2><!-- End .title text-center -->
+                 
+                <div class="products">
+                    <div class="row justify-content-center">
+                         {{#each cat}}
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="product product-7 text-center">
+                                <figure class="product-media">
+                                   
+                                    <a href="product.html">
+                                        <img src="{{this.image}}" alt="Product image" class="product-image">
+                                       
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">{{this.breed}}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="#">{{this.age}}</a></h3>
+                                   <h3 class="product-title"><a href="#">{{this.gender}}</a></h3>
+                                   <h3 class="product-title"><a href="#">{{this.breed}}</a></h3>
+                                    <h3 class="product-title"><a href="#">{{this.price}}</a></h3>
+                                </div>
+                                  
+                            </div>
+                            </div>
+                        
+                            
+                        {{/each}}
+</div></div></div>
+
+              <div class="container">
+                <h2 class="title text-center mb-4">NEW  BIRD</h2><!-- End .title text-center -->
+                 
+                <div class="products">
+                    <div class="row justify-content-center">
+                         {{#each bird}}
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="product product-7 text-center">
+                                <figure class="product-media">
+                                   
+                                    <a href="product.html">
+                                        <img src="{{this.image}}" alt="Product image" class="product-image">
+                                       
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <div class="product-cat">
+                                        <a href="#">{{this.catagory}}</a>
+                                    </div><!-- End .product-cat -->
+                                    <h3 class="product-title"><a href="#">{{this.breed}}</a></h3><!-- End .product-title -->
+                                    <h3 class="product-title"><a href="#">{{this.age}}</a></h3>
+                                   <h3 class="product-title"><a href="#">{{this.gender}}</a></h3>
+                                   
+                                    <h3 class="product-title"><a href="#">{{this.price}}</a></h3>
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                        {{/each}}
+</div></div></div>
+
+
+                          <div class="container">
+                <h2 class="title text-center mb-4">NEW  FISH</h2><!-- End .title text-center -->
+                  {{!-- {{let [dogs,cats] = product}} --}}
+                <div class="products">
+                    <div class="row justify-content-center">
+                         {{#each fish}}
+                        <div class="col-6 col-md-4 col-lg-3">
+                            <div class="product product-7 text-center">
+                                <figure class="product-media">
+                                   
+                                    <a href="product.html">
+                                        <img src="{{this.image}}" alt="Product image" class="product-image">
+                                       
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="col-md-6 col-lg-6 col-xl-6">
+                <h5>{{this.breed}}</h5>
+                <div class="d-flex flex-row">
+                  <div class="text-danger mb-1 me-2">
+
+				<P>Catagory:{{this.catagory}}</P>
+				<P>{{this.gender}}</P>
+                <h5>{{this.price}}</h5>
+             
+    
+				
+				
+                  </div>
+                
+                </div>
+               
+               
+              
+              </div>
+
+                             
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+
+                       {{/each}}
+                    </div><!-- End .row -->
+                </div><!-- End .product                        s -->
+
+            </div>
+                    
+              </main> 
+            </div>
+         
               

@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">NAME</th>
+      <th scope="col">EMAIL</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+              {{#each details}}
+
+    <tr>
+      <th scope="row">1</th>
+
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.age}}</td>
+   
+    </tr>
+   {{/each}}
+  </tbody>
+</table>
