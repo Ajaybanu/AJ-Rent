@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require("bcrypt");
-const { wishlist } = require('../controller/user');
+
 
 
 const userSchema = new mongoose.Schema({
@@ -46,7 +46,15 @@ const userSchema = new mongoose.Schema({
         },
 
       }],
-     
+      wishlist: [{
+             productId:{
+            type: mongoose.Types.ObjectId,
+            ref: 'Product',
+             }
+           
+        
+    }],
+    
     })
     
 

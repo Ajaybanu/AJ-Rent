@@ -4,37 +4,26 @@ var multer = require("../middlewares/multer")
 var { ifAdmin } =require("../middlewares/session")
 const{
   adminlogin,
-  admincart,
+  adminhome,
   admindogcatagory,
-  dogaddcart,
-  cataddcart,
-  birdaddcart,
-  fishaddcart,
+  addproduct,
   postadmincart,
-  postdogaddcart,
-  postcataddcart,
-  postAddBird,
-  postfishaddcart,
-  adddogproduct,
-  postadddogproduct,
+ addcategory,
+  postaddcategory,
   userlist,
-  
+  productlist,
+  postAddProduct
 }= require("../controller/admin");
 router.get("/adminlogin",adminlogin);
-router.get("/admincart",ifAdmin,admincart);
+router.get("/adminhome",ifAdmin,adminhome);
 router.get("/admindogcatagory",admindogcatagory); 
-router.get("/dogaddcart",dogaddcart);
-router.get("/cataddcart",cataddcart);
-router.get("/birdaddcart",birdaddcart);
-router.get("/fishaddcart",fishaddcart);
-router.post("/admincart",postadmincart);
-router.post("/dogaddcart",multer.single("image"),postdogaddcart);
-router.post("/cataddcart",multer.single("image"),postcataddcart);
-router.post("/birdaddcart",multer.single("image"),postAddBird);
-router.post("/postfishaddcart",multer.single("image"),postfishaddcart);
-router.get("/dogproductadd",adddogproduct);
-router.post("/dogproductadd",multer.single("image"),postadddogproduct);
+router.get("/admin-product-add",addproduct);
+router.post("/postaddproduct",multer.single("image"),postAddProduct);
+router.post("/adminhome",postadmincart);
+router.get("/admin-category-add",addcategory);
+router.post("/postaddcategory",multer.single("image"),postaddcategory);
 router.get("/userlist",userlist);
+router.get("/productlist",productlist);
 
 
 

@@ -1,0 +1,25 @@
+<table class="table table-striped"
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">IMAGE</th>
+      <th scope="col">BREED</th>
+      <th scope="col">CATAGORY</th>
+      <th scope="col">PRICE</th>
+    </tr>
+  </thead>
+  <tbody>
+              {{#each items}}
+
+    <tr>
+      <th scope="row">1</th>
+
+      <td>{{this.image}}</td>
+      <td>{{this.breed}}</td>
+      <td>{{this.catagory}}</td>
+      <td>{{this.price}}</td>
+   
+    </tr>
+   {{/each}}
+  </tbody>
+</table>

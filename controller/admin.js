@@ -1,16 +1,16 @@
-const { Dog } = require("../model/dogdb");
-const { Cat } = require("../model/catdb");
-const { Bird } = require("../model/birddb");
-const { Fish } = require("../model/fishdb");
+const { Products } = require("../model/productdb")
+const { Category } = require("../model/category")
 const { User } = require("../model/userdb");
 const multer = require("multer");
+const async = require("hbs/lib/async");
+const { localsAsTemplateData } = require("hbs");
 
 
 
 const adminlogin = (req,res)=>{
     if (req.session.adminlogged) {
         req.session.adminlogerror = false;
-    res.render("admincart",{layout:"partials/adminlayout"});
+    res.render("adminhome",{layout:"partials/adminlayout"});
 }else{
     req.session.adminlogin = true;
     console.log("Admin login reached");
@@ -35,7 +35,7 @@ const postadmincart=(req,res)=>{
     console.log("admin home reached");
     req.session.adminlogged = true;
    
-    res.render("admincart",{layout:"partials/adminlayout"});
+    res.render("adminhome",{layout:"partials/adminlayout"});
   }else{
     req.session.adminlogerror = true;
     res.redirect("/admin/adminlogin")
@@ -44,106 +44,72 @@ const postadmincart=(req,res)=>{
 
 
 
-const admincart =(req,res)=>{
+const adminhome =(req,res)=>{
    
-    res.render("admincart")
+    res.render("adminhome")
   };
 
 
 const admindogcatagory = (req,res)=>{
     res.render("admindogcatagory");
 }
-const dogaddcart = (req,res)=>{
-    res.render("dogaddcart",{layout:"partials/adminlayout"});
+const addproduct =async(req,res)=>{
+  let category = await Category.find()
+    res.render("admin-product-add",{layout:"partials/adminlayout",category});
 }
-const postdogaddcart= async (req,res)=>{
-  console.log(req.body,"kkkkkkkkkkkkkkkkkkkkkkkk");
-  const dog = new Dog({
-    breed:req.body.breed,
-    age:req.body.age,
-   gender:req.body.gender,
-    catagory:req.body.catagory,
-    price:req.body.price,
-    image:req.file.filename,
-  })
-await dog.save().then((result)=>
-  {
-    res.redirect("/admin/dogaddcart");
-  })
- 
-  
- }
- 
-const cataddcart = (req,res)=>{
-    res.render("cataddcart",{layout:"partials/adminlayout"});
-}
-const postcataddcart = (req,res)=>{
+const postAddProduct = async (req, res) => {
   console.log(req.body);
-  const cat = new Cat({
-    breed:req.body.breed,
-    age:req.body.age,
-   gender:req.body.gender,
-    catagory:req.body.catagory,
-    price:req.body.price,
-    image:req.file.filename,
-  })
-  cat.save().then((result)=>{
-    res.redirect("/admin/cataddcart");
-  })
- }
+  let Categories = req.body.category;
+  console.log(Categories);
+  const category = await Category.findOne({ name: Categories })
+  if (!category) {
+    console.log("category invalid");
+  }
+  if (category) {
+    let data = category.id.toString();
+    const product = new Products({
 
-const birdaddcart =(req,res)=>{
-  
-    res.render("birdaddcart",{layout:"partials/adminlayout"});
-}
-const postAddBird = (req,res)=>{
-  console.log(req.body);
-  const bird = new Bird({
-    breed:req.body.breed,
-    age:req.body.age,
-   gender:req.body.gender,
-   catagory:req.body.catagory,
-    price:req.body.price,
-    image:req.file.filename,
-  })
-   bird.save().then((result)=>{
-    res.redirect("/admin/birdaddcart");
-   })
-}
-const fishaddcart=(req,res)=>{
-    res.render("fishaddcart",{layout:"partials/adminlayout"})
-}
-const postfishaddcart = (req,res)=>{
-  console.log(req.body);
-  const fish = new Fish({
-    breed:req.body.breed,
-    age:req.body.age,
-    gender:req.body.gender,
-    catagory:req.body.catagory,
-    price:req.body.price,
-   image:req.file.filename,
-    aquarium:req.body.aquarium,
+      name: req.body.name,
+      description: req.body.description,
+      image: req.file.filename,
+      price: req.body.price,
+      category: data,
+      countInStock: req.body.countInStock,
+      
+     
 
-  })
+    });
+    product.save().then((productsadded) => {
+      console.log(productsadded);
+      
 
-  fish.save().then((result)=>{
-    res.redirect("/admin/fishaddcart")
-  })
-}
-  const adddogproduct = (req,res)=>{
-    res.render("dogproductadd",{layout:"partials/adminlayout"});
-   }
+      res.redirect('/admin/adminhome')
 
-   const postadddogproduct = (req,res)=>{
-    console.log(req.body);
-    const dogproduct = new Dog ({
-      breed:req.body.breed,
-      catagory:req.body.catagory,
-      price:req.body.price,
-      image:req.file.filename,
     })
-    dogproduct.save().then((result)=>{
-      res.redirect("/admin/dogproductadd");
+  }
+}
+
+
+
+
+
+  const addcategory = async(req,res)=>{
+    let category = await Category.find()
+      res.render("admin-category-add",{category,layout:"partials/adminlayout"});
+    }
+    
+   
+
+   const postaddcategory= (req,res)=>{
+    console.log(req.body);
+    const category = new Category ({
+      name:req.body.name,
+      image:req.file.filename,
+     description:req.body.description
+    })
+    category.save().then((data)=>{
+      console.log(data);
+      res.redirect("/admin/admin-category-add");
     })
   }
   
@@ -152,9 +118,13 @@ await  User.find().then((details)=>{
   console.log(details);
   res.render("userlist",{details,layout:"partials/adminlayout"})
 })
-   
- 
 };
+
+const productlist = async(req,res)=>{
+ 
+   res.render("productlist",{layout:"partials/adminlayout"})
+  
+}
 
  
   
@@ -165,20 +135,19 @@ await  User.find().then((details)=>{
 
 module.exports={
     adminlogin,
-    admincart,
+    adminhome,
     admindogcatagory,
-    dogaddcart,
-   cataddcart,
-   birdaddcart,
-   fishaddcart,
+    addproduct,
+  
+  
    postadmincart,
-   postdogaddcart,
-   postcataddcart,
-   postAddBird,
-   postfishaddcart,
-   adddogproduct,
-   postadddogproduct,
+   
+   
+   addcategory,
+   postaddcategory,
     userlist,
+    productlist,
+    postAddProduct,
   
 
   
