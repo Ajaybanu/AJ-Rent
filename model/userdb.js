@@ -26,49 +26,58 @@ const userSchema = new mongoose.Schema({
         max:(10),
         
     },
-    cart: [{
-        productId: {
-          type: mongoose.Schema.Types.ObjectId,
-          ref: 'products'
-        },
-        quantity: {
-          type: Number,
-          default: 1
-        },
-        price:{
-            type:Number,
-            default:0
-        },
-        image:{
-            type:String,
-            required:true
+    // cart: [{
+    //     productId: {
+    //       type: mongoose.Schema.Types.ObjectId,
+    //       ref: 'products'
+    //     },
+    //     quantity: {
+    //       type: Number,
+    //       default: 1
+    //     },
+    //     price:{
+    //         type:Number,
+    //         default:0
+    //     },
+    //     image:{
+    //         type:String,
+    //         required:true
 
-        },
+    //     },
 
-      }],
+    //   }],
       wishlist: [{
-             productId:{
-            type: mongoose.Types.ObjectId,
-            ref: 'Product',
-             }
-           
-        
-    }],
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'products',
+             
+}],
     
     })
     
 
 
-userSchema.pre('save', async function (next) {
-    try {
-        const salt = await bcrypt.genSalt(10)
-        const hashedpassword = await bcrypt.hash(this.password, salt)
-        this.password = hashedpassword
-        next()
-    } catch (error) {
-        next(error)
+
+userSchema.pre('save', function (next) {
+    const user = this;
+    if (!user.isModified('password')) {
+      return next();
     }
-})
+  
+    bcrypt.genSalt(15, function (err, salt) {
+      if (err) {
+        return next(err);
+      }
+  
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        if (err) {
+          return next(err);
+        }
+  
+        user.password = hash;
+        next();
+      });
+    });
+  });
 
 
 

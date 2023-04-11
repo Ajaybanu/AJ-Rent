@@ -28,39 +28,33 @@
 						</thead>
                       
 						<tbody>
-							{{#each fish}}
+							{{#each products}}
+						
 							<tr>
 								<td class="product-col">
 									<div class="product">
 										<figure class="product-media">
 											<a href="#">
-												<img src="/{{this.image}}" alt="Product image">
+												<img src="{{this.image}}" alt="Product image">
 											</a>
 										</figure>
 
 										<h3 class="product-title">
-											<a href="#">{{this.breed}}</a>
+											
 										</h3><!-- End .product-title -->
 									</div><!-- End .product -->
 								</td>
 								<td class="price-col">{{this.price}}</td>
-								<td class="stock-col"><span class="in-stock"></span></td>
+								<td class="stock-col">{{this.name}}<span class="in-stock"></span></td>
 								<td class="action-col">
-                                    <div class="dropdown">
-									<button class="btn btn-block btn-outline-primary-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="icon-list-alt"></i>Select Options
-                                    </button>
-
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="#">First option</a>
-                                        <a class="dropdown-item" href="#">Another option</a>
-                                        <a class="dropdown-item" href="#">The best option</a>
-                                      </div>
-                                    </div>
+                                  
 								</td>
-								<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+								 <form action="/deletewish/{{this.id}}" method="POST">
+								<td class="remove-col"><button type="submit" class="btn-remove" ><i class="icon-close"></i></button></td>
+								</form>
 							</tr>
-						{{/each}}
+							{{/each}}
+					
 						</tbody>
 						
 					</table><!-- End .table table-wishlist -->

@@ -1,4 +1,4 @@
-
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
     <div class="page-wrapper">
         
@@ -13,75 +13,16 @@
 
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
-            <nav aria-label="breadcrumb" class="breadcrumb-nav">
-                <div class="container">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                        <li class="breadcrumb-item"><a href="elements-list.html">Elements</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Products</li>
-                    </ol>
-                </div><!-- End .container -->
-            </nav><!-- End .breadcrumb-nav -->
 
-            <div class="page-content">
-                <div class="container">
-					{{#with categor}}
-                	<h2 class="title text-center mb-3">{{this.name}}</h2><!-- End .title -->
-                    {{/with}}
-                	<div class="row">
-						{{#each product_list}}
-                		<div class="col-6 col-md-4 col-lg-4">
-                			<div class="product text-center">
-                				<figure class="product-media">
-                					{{!-- <span class="product-label label-sale">30% off</span> --}}
-                					{{!-- <a href="product.html"> --}}
-                						<img src="/../{{this.image}}" alt="Product image" class="product-image">
-                					</a>
-
-                					<div class="product-action">
-                						<a href="/dogaccessories" class="btn-product btn-cart"><span>VIEW</span></a>
-                						{{!-- <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
-                						<a href="#" class="btn-product btn-compare" title="Compare"><span>compare</span></a> --}}
-                					</div><!-- End .product-action -->
-                				</figure><!-- End .product-media -->
-
-                				<div class="product-body">
-                					<div class="product-cat">
-                						
-                					</div><!-- End .product-cat -->
-                					<h3 class="product-title"><a href="product.html">DOG ACCESSORIES</a></h3><!-- End .product-title -->
-                					<div class="product-price">
-                						{{!-- <span class="new-price">$50.00</span>
-                						<span class="old-price">$84.00</span> --}}
-                					</div><!-- End .product-price -->
-                                    {{!-- <div class="product-size">
-                                        <a href="#" class="disabled" title="Small">S</a>
-                                        <a href="#" title="Medium">M</a>
-                                        <a href="#" class="active" title="Large">L</a>
-                                        <a href="#" title="Extra Large">XL</a>
-                                    </div><!-- End .product-size --> --}}
-                					<div class="ratings-container">
-                						<div class="ratings">
-                							<div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
-                						</div><!-- End .ratings -->
-                						<span class="ratings-text">( 5 Reviews )</span>
-                					</div><!-- End .rating-container -->
-
-                					
-                				</div><!-- End .product-body -->
-                			</div><!-- End .product -->
-                		</div><!-- End .col-sm-6 col-lg-4 -->
-{{/each}}
-                		
-                	</div><!-- End .row -->
-
+             
+          
                 	
-                            </div>
+                        
 							
 							
 							   <div class="container">
                     <hr class="mt-2 mb-5">
-                    <h2 class="title text-center mb-3">4 Columns Without Space</h2><!-- End .title -->
+                    <h2 class="title text-center mb-3"></h2><!-- End .title -->
 
                     <div class="row no-gutters">
 						{{#each product_list}}
@@ -94,10 +35,9 @@
                                     </a>
 
                                     <div class="product-action-vertical">
-										<form action="/postwishlist/{{this.id}}" method="post">
-                                       <button type="submit"> <a class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a></button>
-</form>
-</div><!-- End .product-action -->
+									
+                                       <button data-item-id="{{this.id}}" class="add-to-wishlist"> <a class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a></button>
+                                               </div><!-- End .product-action -->
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
@@ -106,15 +46,15 @@
                                     </div><!-- End .product-cat -->
                                     <h3 class="product-title"><a href="product.html">{{this.name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
-                                        <span class="new-price">$50.00</span>
-                                        <span class="old-price">$84.00</span>
+                                         <span class="new-price">${{this.price}}</span>
+                                        <span class="old-price">6684.00</span>
                                     </div><!-- End .product-price -->
                                     <div class="ratings-container">
                                         <div class="ratings">
                                             <div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
                                         </div><!-- End .ratings -->
                                         <span class="ratings-text">( 4 Reviews )</span>
-                                    </div><!-- End .rating-container -->
+                                    </div><!-- End .ratin -->
 
                                     <div class="product-nav product-nav-dots">
                                         <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
@@ -132,14 +72,32 @@
                       
                     </div><!-- End .row -->
                 </div><!-- End .container -->
-							</div>
 							
 							
 							
-							
-							
-							
-							
+						
 							</main></div>
+
+
+                            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    // When user clicks the button, make an AJAX request to add item to wishlist
+    $('.add-to-wishlist').click(function() {
+    const itemID = $(this).data('item-id');
+    $.ajax({
+        url: '/wishlist',
+        method: 'POST',
+        data: { itemID: itemID },
+        success: (response) => {
+            console.log(response);
+            alert(response);
+        },
+        error: () => {
+            console.error('Error adding item to wishlist');
+            alert('Error adding item to wishlist');
+        }
+    });
+});
+</script>
 
 

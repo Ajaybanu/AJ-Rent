@@ -10,6 +10,7 @@ else{
 
 const ifUser = (req,res,next)=>{
     if(req.session.user_id){
+        req.session.userLogged
     next();
 }
 else{

@@ -3,7 +3,7 @@ const { Category } = require("../model/category")
 const { User } = require("../model/userdb");
 const multer = require("multer");
 const async = require("hbs/lib/async");
-const { localsAsTemplateData } = require("hbs");
+
 
 
 

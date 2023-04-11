@@ -13,6 +13,8 @@ const{
   usercart,
   addToCart,
   wishlist,
+  toypage,
+  deletewishlist,
 
   postwishlist,
 } = require("../controller/user");
@@ -23,11 +25,13 @@ router.get("/usersignup",signup);
 router.post("/postsignup",postsignup);
 router.post("/postlogin",postlogin); 
 router.get("/getproductsC/:id",dp);
+router.get("/toypage",toypage);
 
 router.get("/",usercart);
 router.post('/usercart',addToCart);
-router.get("/userwishlist",wishlist)
-router.post("/postwishlist/:id",postwishlist);
+router.get("/userwishlist",ifUser,wishlist);
+router.post("/wishlist",ifUser,postwishlist);
+router.post("/deletewish/:id",ifUser,deletewishlist);
 
 
 module.exports = router;
