@@ -62,8 +62,11 @@
                                     </div><!-- End .product-nav -->
 
                                     <div class="product-action">
-                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                        <form action="/usercart/{{this.id}}" method="post">
+                                               <button class="btn-product btn-cart" type="submit"> ADD To Cart </button>
+                                        </form>
+                                        <a href="" class="btn-product btn-cart"><span>add to cart</span></a>
+                                        <a href="/viewpage/{{this.id}}" class="btn-product btn-toolbar"><span> view</span></a>
                                     </div><!-- End .product-action -->
                                 </div><!-- End .product-body -->
                             </div><!-- End .product -->

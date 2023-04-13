@@ -2,7 +2,8 @@ const database = require("../config/server");
 const { User } = require("../model/userdb");
 const bcrypt = require("bcrypt");
 const { Products } = require("../model/productdb")
-const { Category } = require("../model/category")
+const { Category } = require("../model/category");
+const async = require("hbs/lib/async");
 
 const login = (req, res) => {
   res.render("userlogin",{ layout: "partials/layout"} )
@@ -103,6 +104,18 @@ const dp = async (req, res) => {
   }
 }
 
+const viewpage =async (req,res)=>{
+  const id = req.params.id;
+  console.log(id);
+  const view = await Products.findById(id);
+
+   console.log(view);
+    res.render("viewpage",{ layout: "partials/layout",view})
+  }
+  
+ 
+
+
 const toypage = async (req, res) => {
   try {
     let id = req.params.id;
@@ -116,104 +129,6 @@ const toypage = async (req, res) => {
     console.log(err);
   }
 }
-
-
-
-
-
-
-const usercart = async (req, res) => {
-  console.log(req.params);
-  try {
-    const user_id = req.session.user_id;
-    if (!user_id) {
-      return res.status(401).send('Unauthorized');
-    }
-
-    let productExist = await Dog.findById(req.params.id)
-
-
-
-    let price = productExist.price
-    let productId = productExist.id
-    let image = productExist.image
-
-    let object = {
-      product: productId,
-      price: price,
-      image: image
-
-
-    }
-
-    if (productExist) {
-
-      let updateCart = await User.findOne({ _id: user_id })
-      console.log(updateCart)
-      updateCart.cart.push(object);
-      await updateCart.save();
-      res.redirect('/')
-    }
-    else {
-      res.send('product already added to cart')
-
-    }
-  }
-  catch (err) { console.log(err); }
-}
-
-const addToCart = (req, res) => {
-  res.render("usercart", { layout: "partials/layout" })
-}
-
-
-
-
-
-
-
-
-// Step 1: Define the cart schema
-// const mongoose = require('mongoose');
-
-// const cartSchema = new mongoose.Schema({
-//   items: [{
-//     name: String,
-//     price: Number,
-//     quantity: Number
-//   }],
-//   total: Number
-// });
-
-// const Cart = mongoose.model('Cart', cartSchema);
-
-// // Step 2: Create an endpoint for selecting a cart
-// app.get('/carts/:id', async (req, res) => {
-//   const { id } = req.params;
-//   const cart = await originalCollection.findById(id);
-//   if (cart) {
-//     // Step 3: Save the selected cart to the new schema
-//     const newCart = new Cart({
-//       items: cart.items,
-//       total: cart.total
-//     });
-//     await newCart.save();
-//     res.json(newCart);
-//   } else {
-//     res.status(404).send('Cart not found');
-//   }
-// });
-
-// // Step 4: Create an endpoint for retrieving the selected cart
-// app.get('/selected-cart/:id', async (req, res) => {
-//   const { id } = req.params;
-//   const selectedCart = await Cart.findById(id);
-//   if (selectedCart) {
-//     res.json(selectedCart);
-//   } else {
-//     res.status(404).send('Selected cart not found');
-//   }
-// });
 
 
 const postwishlist = async (req, res) => {
@@ -275,6 +190,86 @@ const deletewishlist = async (req, res, next) => {
   }
 }
 
+
+
+const addToCart = async (req, res) => {
+ const productId = req.params.id;
+
+  console.log(req.params);
+  try {
+      const user_id = req.session.user_id;
+      if (!user_id) {
+          // If the user is not logged in, return an error
+          return res.status(401).send('Unauthorized');
+      }
+
+      const productExist = await Products.findOne({ _id: productId })
+      console.log(productExist);
+      // Create a new cart item
+      let product = productExist.id
+      let price = productExist.price
+      let name = productExist.name;
+      let quantity = 1;
+    
+      if (productExist) {
+          let object = {
+              productId: product,
+              price: price,
+              quantity: quantity,
+              name: name,
+              total: price * quantity 
+          }
+          let isproductexist = await User.findOne({ _id: user_id, "cart.productId": product })
+          if (!isproductexist) {
+
+
+              let updateCart = await User.updateOne({ _id: user_id }, { $push: { cart: object } }).then(result => console.log(result));
+              console.log(updateCart)
+
+              if (!req.session.cart) {
+                  req.session.cart = [];
+              }
+              req.session.cart.push({ price: price, quantity: quantity, product: product });
+              req.session.cartCount = (req.session.cartCount || 0) + 1;
+              console.log(req.session.cart);
+              res.redirect('/')
+          }
+        
+          else {
+            res.redirect('/')
+        }
+    }
+}
+catch (err) { console.log(err); }
+
+}
+
+
+
+
+
+
+const usercart= async (req, res) => {
+  // retrieve the caart array from the userSchema for the current user
+  const currentUser = await User.findById(req.session.user_id).populate('cart');
+  console.log(req.session);
+  const cartProducts = currentUser.cart;
+
+  // fetch the product details for each product id in the CArtarray
+let Cart = [];
+  for (let i = 0; i < cartProducts.length; i++) {
+      const product = await Products.findById(cartProducts[i].productId);
+
+      Cart.push(product);
+
+  }
+  console.log(Cart,"llllllllllllllllllllllll");
+  res.render("usercart", { layout: "partials/layout", Cart,cartProducts})
+};
+
+
+
+
   
 
 
@@ -292,19 +287,14 @@ module.exports = {
   home,
   dp,
   login,
-
   signup,
   postsignup,
   postlogin,
   usercart,
   toypage,
-
-
   addToCart,
   wishlist,
-
   postwishlist,
   deletewishlist,
-
-
+  viewpage,
 }

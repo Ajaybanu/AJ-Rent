@@ -26,26 +26,26 @@ const userSchema = new mongoose.Schema({
         max:(10),
         
     },
-    // cart: [{
-    //     productId: {
-    //       type: mongoose.Schema.Types.ObjectId,
-    //       ref: 'products'
-    //     },
-    //     quantity: {
-    //       type: Number,
-    //       default: 1
-    //     },
-    //     price:{
-    //         type:Number,
-    //         default:0
-    //     },
-    //     image:{
-    //         type:String,
-    //         required:true
+    cart: [{
+        productId: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: 'products'
+        },
+        quantity: {
+          type: Number,
+          default: 1
+        },
+        price:{
+            type:Number,
+            default:0
+        },
+        image:{
+            type:String,
+            required:true
 
-    //     },
+        },
 
-    //   }],
+      }],
       wishlist: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: 'products',

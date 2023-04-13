@@ -17,11 +17,6 @@ else{
     res.redirect("/login")
 }
 }
-const ifCart = (req, res, next) => {
-    if (!req.session.cart) {
-      req.session.cart = [];
-    }
-    next();
-  };
 
-module.exports={ ifAdmin,ifUser,ifCart};
+
+module.exports={ ifAdmin,ifUser};

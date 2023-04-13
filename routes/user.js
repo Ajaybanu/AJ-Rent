@@ -15,6 +15,8 @@ const{
   wishlist,
   toypage,
   deletewishlist,
+  viewpage,
+  
 
   postwishlist,
 } = require("../controller/user");
@@ -26,9 +28,10 @@ router.post("/postsignup",postsignup);
 router.post("/postlogin",postlogin); 
 router.get("/getproductsC/:id",dp);
 router.get("/toypage",toypage);
+router.get("/viewpage/:id",viewpage);
 
-router.get("/",usercart);
-router.post('/usercart',addToCart);
+router.get("/usercart",ifUser,usercart)
+router.post('/usercart/:id',addToCart);
 router.get("/userwishlist",ifUser,wishlist);
 router.post("/wishlist",ifUser,postwishlist);
 router.post("/deletewish/:id",ifUser,deletewishlist);

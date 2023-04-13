@@ -5,14 +5,14 @@
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
            
-
+{{Cart}}
             <div class="page-content">
             	<div class="cart">
 	                <div class="container">
 	                	<div class="row">
 	                		<div class="col-lg-9">
 	                			<table class="table table-cart table-mobile">
-									{{#each updatecart}}
+									{{#each Cart}}
 									<thead>
 										<tr>
 											<th>{{this.name}}</th>
@@ -27,21 +27,20 @@
 									{{/each}}
 
 									<tbody>
+										{{#each Cart}}
+									
 										<tr>
 											<td class="product-col">
-												<div class="product">
+																							<div class="product">
 													<figure class="product-media">
-														<a href="#">
-															<img src="assets/images/bird food.jpg" alt="Product image">
+														<a href="/productdetails/{{this.id}}">
+															<img src="{{this.image}}" alt="Product image">
 														</a>
 													</figure>
-
-													<h3 class="product-title">
-														<a href="#">fish food</a>
-													</h3><!-- End .product-title -->
 												</div><!-- End .product -->
+	
 											</td>
-											<td class="price-col">Rs.199</td>
+											<td class="price-col">Rs.{{this.price}}</td>
 											<td class="quantity-col">
                                                 <div class="cart-product-quantity">
                                                     <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
@@ -50,29 +49,8 @@
 											<td class="total-col">Rs.199</td>
 											<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
 										</tr>
-										<tr>
-											<td class="product-col">
-												<div class="product">
-													<figure class="product-media">
-														<a href="#">
-															<img src="assets/images/cat toy.jpg" alt="Product image">
-														</a>
-													</figure>
-
-													<h3 class="product-title">
-														<a href="#">Cat toy</a>
-													</h3><!-- End .product-title -->
-												</div><!-- End .product -->
-											</td>
-											<td class="price-col">Rs.500</td>
-											<td class="quantity-col">
-                                                <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                                </div><!-- End .cart-product-quantity -->                                 
-                                            </td>
-											<td class="total-col">Rs.699</td>
-											<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
-										</tr>
+										{{/each}}
+									
 									</tbody>
 								</table><!-- End .table table-wishlist -->
 
@@ -103,7 +81,7 @@
 	                						</tr><!-- End .summary-subtotal -->
 	                						<tr class="summary-shipping">
 	                							<td>Shipping:</td>
-	                							<td>&nbsp;</td>
+	                							<td></td>
 	                						</tr>
 
 	                						<tr class="summary-shipping-row">
