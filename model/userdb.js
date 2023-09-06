@@ -12,10 +12,6 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    address:{
-        type:String,
-        required:true,
-    },
     number:{
         type:String,
         required:true
@@ -35,6 +31,10 @@ const userSchema = new mongoose.Schema({
           type: Number,
           default: 1
         },
+        name:{
+          type:String,
+
+        },
         price:{
             type:Number,
             default:0
@@ -44,6 +44,9 @@ const userSchema = new mongoose.Schema({
             required:true
 
         },
+        total:{
+          type:Number
+        }
 
       }],
       wishlist: [{
@@ -51,6 +54,47 @@ const userSchema = new mongoose.Schema({
             ref: 'products',
              
 }],
+address: [ 
+  {
+    firstname: {
+      type: String,
+      required: true
+    },
+    lastname: {
+      type: String,
+      required: true
+    },
+    country:{
+      type:String,
+      requires:true
+    },
+    Address: {
+      type: String,
+      required: true
+    },
+    city: {
+      type: String,
+      required: true
+    },
+    state: {
+      type: String,
+      required: true
+    },
+    pincode: {
+      type: Number,
+      required: true
+    },
+    phone: {
+      type: Number,
+      required: true
+    }
+  }
+],
+orders: [
+
+  { type: mongoose.Types.ObjectId, ref: 'orders' }
+]
+
     
     })
     

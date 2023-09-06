@@ -1,4 +1,6 @@
-  <div class="page-wrapper">
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+    <div class="page-wrapper">
         
         <main class="main">
         	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
@@ -11,6 +13,8 @@
 
         		</div><!-- End .container -->
         	</div><!-- End .page-header -->
+
+             
           
                 	
                         
@@ -31,15 +35,14 @@
                                     </a>
 
                                     <div class="product-action-vertical">
-										<form action="/postwishlist/{{this.id}}" method="post">
-                                       <button type="submit"> <a class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a></button>
-                                               </form>
-</div><!-- End .product-action -->
+									
+                                       <button data-item-id="{{this.id}}" class="add-to-wishlist"> <a class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a></button>
+                                               </div><!-- End .product-action -->
                                 </figure><!-- End .product-media -->
 
                                 <div class="product-body">
                                     <div class="product-cat">
-                                        <a href="#">Women</a>
+                                        <a href="#"></a>
                                     </div><!-- End .product-cat -->
                                     <h3 class="product-title"><a href="product.html">{{this.name}}</a></h3><!-- End .product-title -->
                                     <div class="product-price">
@@ -59,8 +62,12 @@
                                     </div><!-- End .product-nav -->
 
                                     <div class="product-action">
-                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
-                                        <a href="popup/quickView.html" class="btn-product btn-quickview" title="Quick view"><span>quick view</span></a>
+                                        <form action="/usercart/{{this.id}}" method="post">
+                                               <button class="btn-product btn-cart" type="submit"> ADD To Cart </button>
+                                        </form>
+                                       <form action="/viewpage/{{this.id}}" method="get">
+                                        <button>VIEW</button>
+                                        </form>
                                     </div><!-- End .product-action -->
                                 </div><!-- End .product-body -->
                             </div><!-- End .product -->
@@ -72,9 +79,29 @@
 							
 							
 							
-							
-							
-							
-							
-							
+						
 							</main></div>
+
+
+                            <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    // When user clicks the button, make an AJAX request to add item to wishlist
+    $('.add-to-wishlist').click(function() {
+    const itemID = $(this).data('item-id');
+    $.ajax({
+        url: '/wishlist',
+        method: 'POST',
+        data: { itemID: itemID },
+        success: (response) => {
+            console.log(response);
+            alert(response);
+        },
+        error: () => {
+            console.error('Error adding item to wishlist');
+            alert('Error adding item to wishlist');
+        }
+    });
+});
+</script>
+
+

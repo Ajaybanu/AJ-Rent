@@ -8,6 +8,7 @@ const session = require("express-session");
 const hbs = require('hbs');
 var userRouter = require('./routes/user');
 var adminRouter = require('./routes/admin');
+const handlebars = require('handlebars');
 var fileUpload = require('express-fileupload');
 
 var app = express();
@@ -19,6 +20,13 @@ app.use(
     cookie: { maxAge: 6000000 },
   })
 );
+hbs.registerHelper('limit', function(arr, limit) {
+  if (!Array.isArray(arr)) { return []; }
+  return arr.slice(0, limit);
+});
+
+const helpers = require('handlebars-helpers')();
+
 
 
 // view engine setup

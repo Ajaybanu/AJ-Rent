@@ -1,0 +1,158 @@
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+
+<div class="page-wrapper">
+
+  <main class="main">
+    <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+      <div class="container">
+        <h1 class="page-title">Checkout<span>Shop</span></h1>
+      </div><!-- End .container -->
+    </div><!-- End .page-header -->
+    <nav aria-label="breadcrumb" class="breadcrumb-nav">
+      <div class="container">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Home</a></li>
+          <li class="breadcrumb-item"><a href="/">Shop</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+        </ol>
+      </div><!-- End .container -->
+    </nav><!-- End .breadcrumb-nav -->
+
+
+
+
+    <form id="rzp-form" action="/success" method="post">
+      <aside class="col-lg-9">
+        <div class="summary">
+          <h3 class="summary-title">Your Order {{order_id}}</h3><!-- End .summary-title -->
+
+          <table class="table table-summary">
+
+
+
+            <tbody>
+              <tr class="summary-subtotal">
+                <td>Name:</td>
+                <td> <input type="text" name="name" value="{{name}}" required></td>
+              </tr><!-- End .summary-subtotal -->
+              <tr class="summary-subtotal">
+                <td>Email:</td>
+                <td> <input type="email" name="email" value="{{email}}" required></td>
+              </tr><!-- End .summary-subtotal -->
+
+
+
+              <tr class="summary-subtotal">
+                <td>Mobile:</td>
+                <td> <input type="text" name="contactNumber" value="{{contactNumber}}" required></td>
+              </tr><!-- End .summary-subtotal -->
+              <tr>
+
+                <td> Amount </td>
+                <td> <input type="number" name="amount" value="{{amount}}" readonly></td>
+
+
+              </tr>
+           
+              <input type="hidden" name="orderId" value="{{orderId}}">
+              {{!-- <input type="hidden" name="payment_id" value="{{payment_id}}">
+              <input type="hidden" name="signature" value="{{signature}}"> --}}
+              <tr>
+
+                <td>Shipping:</td>
+                <td>Free shipping</td>
+              </tr>
+
+            </tbody>
+          </table><!-- End .table table-summary -->
+
+
+
+
+          <button id="rzp-button" class="btn btn-outline-primary-2 btn-order btn-block">
+            <span id="rzp-button" class="btn-text">Place Order</span>
+            <span id="rzp-button" class="btn-hover-text">Proceed to Checkout</span>
+          </button>
+        </div><!-- End .summary -->
+      </aside><!-- End .col-lg-3 -->
+
+  </main>
+</div><!-- End .row -->
+</form>
+
+<script>
+  const formdata = document.getElementById("rzp-form")
+  formdata.addEventListener('submit', (e)=>{
+    e.preventDefault()
+  })
+  var options = {
+    "key": "rzp_test_kbvBZsVLBZtPhJ",
+    "amount": "{{amount}}",
+    "name": "{{name}}",
+    "description": "Test Transaction",
+    "image": "/your_logo.png",
+    "order_id": "{{orderId}}",
+    "handler": function (response) {
+      console.log(response)
+        const order_id = response.razorpay_order_id;
+    const payment_id = response.razorpay_payment_id;
+    const signature = response.razorpay_signature;
+    $.ajax({
+      url: '/success',
+      method: 'POST',
+      data: {
+        order_id: order_id,
+        payment_id: payment_id,
+        signature: signature
+      },
+      success: (response) => {
+        if(response){
+          console.log(response,"mmmmmmmmmmmmmmmmmmmmmmmm")
+          console.log(response.orderid)
+        location.href = `/confirmation/${response.orderid}`
+        }
+      },
+      error: () => {
+        console.error('Error adding item to wishlist');
+        alert('Error adding item to wishlist');
+      }
+    });
+    },
+    "prefill": {
+      "name": "{{name}}",
+      "email": "{{email}}",
+      "contact": "{{contactNumber}}"
+    },
+    "notes": {
+      "address": "Your App's Address"
+    },
+    "theme": {
+      "color": "#F37254"
+    }
+  };
+
+  var rzp = new Razorpay(options);
+  document.getElementById('rzp-button').onclick = function (e) {
+    rzp.open();
+    e.preventDefault();
+  }
+ 
+   function verifyPayment(response) {
+            $.ajax({
+                url: "/success",
+                method: 'POST',
+                data: {
+                    razorpay_payment_id: response.razorpay_payment_id,
+                    razorpay_order_id: response.razorpay_order_id,
+                    razorpay_signature: response.razorpay_signature
+                },
+                encoded: false,
+                success: function (response) {
+                    if (response.payment) {
+                        location.href = /success/{{response.order_id}}
+                    }
+                }
+            });
+        }
+</script>

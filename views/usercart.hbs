@@ -46,9 +46,13 @@
                                                     <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
                                                 </div><!-- End .cart-product-quantity -->
                                             </td>
-											<td class="total-col">Rs.199</td>
+											<td class="total-col">Rs.199</td>{{this.id}}
+											<form action="/deletecart/{{this.id}}" method="post" >
 											<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+										</form>
 										</tr>
+
+
 										{{/each}}
 									
 									</tbody>
@@ -70,69 +74,77 @@
 		            			</div><!-- End .cart-bottom -->
 	                		</div><!-- End .col-lg-9 -->
 	                		<aside class="col-lg-3">
-	                			<div class="summary summary-cart">
-	                				<h3 class="summary-title">Cart Total</h3><!-- End .summary-title -->
+							<div class="summary summary-cart">
+								<h3 class="summary-title">Proceed To Order</h3><!-- End .summary-title -->
 
-	                				<table class="table table-summary">
-	                					<tbody>
-	                						<tr class="summary-subtotal">
-	                							<td>Subtotal:</td>
-	                							<td>$160.00</td>
-	                						</tr><!-- End .summary-subtotal -->
-	                						<tr class="summary-shipping">
-	                							<td>Shipping:</td>
-	                							<td></td>
-	                						</tr>
+								<table class="table table-summary">
+									<tbody>{{#each cartProducts}}
+										<tr class="summary-subtotal">
+											<td>Name:</td>
+											<td>{{this.name}}</td>
+										</tr><!-- End .summary-subtotal -->
+										<tr>
+											<td>Price:</td>
+											<td>{{this.price}}</td>
+										</tr>
+										
+										<tr>
+											<td>quantity:</td>
+											<td>{{this.quantity}}</td>
+										</tr>
+										<tr>
+											<td>Total:</td>
+											<td>{{this.total}}</td>
+										</tr>
+										{{/each}}
+										<tr>
+                                            <td>apply Coupon:</td>
+											<td>
+												<form action="/checkout" method="post">
+													
+														{{#if coupdata}}
+															<select id="category"  name="couponcode">
+																{{#each coupdata}}
+																<option>{{this.couponCode}}</option>
+																{{/each}}
+															</select>	
+															{{else}}
+															<h6>coupons not available</h6>
+															{{/if}}
+											</td>
+										</tr>
+										{{!-- <tr>
+											<td>
+											<div class="product-details-action">
+											<button class="btn-product btn-cart" type="submit"> Apply</button>
+											</div>
+											</td>
+										</tr> --}}
+									            	
+														
+													
+												
+										<tr class="summary-total">
+											<input type="hidden" value="{{totalPrice}}" name="totalPrice">
+											<td>Total:</td>
+											<td>{{totalPrice}}</td>
+										</tr><!-- End .summary-total -->
+									</tbody>
+								</table><!-- End .table table-summary -->
 
-	                						<tr class="summary-shipping-row">
-	                							<td>
-													<div class="custom-control custom-radio">
-														<input type="radio" id="free-shipping" name="shipping" class="custom-control-input">
-														<label class="custom-control-label" for="free-shipping">Free Shipping</label>
-													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$0.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
+							<button type="submit">	<a class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO
+									CHECKOUT</a></button>
+									</form>
+							</div><!-- End .summary -->
 
-	                						<tr class="summary-shipping-row">
-	                							<td>
-	                								<div class="custom-control custom-radio">
-														<input type="radio" id="standart-shipping" name="shipping" class="custom-control-input">
-														<label class="custom-control-label" for="standart-shipping">Standart:</label>
-													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$10.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
+							<a href="/viewproducts" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE
+									SHOPPING</span><i class="icon-refresh"></i></a>
+						</aside><!-- End .col-lg-3 -->
 
-	                						<tr class="summary-shipping-row">
-	                							<td>
-	                								<div class="custom-control custom-radio">
-														<input type="radio" id="express-shipping" name="shipping" class="custom-control-input">
-														<label class="custom-control-label" for="express-shipping">Express:</label>
-													</div><!-- End .custom-control -->
-	                							</td>
-	                							<td>$20.00</td>
-	                						</tr><!-- End .summary-shipping-row -->
-
-	                						<tr class="summary-shipping-estimate">
-	                							<td>Estimate for Your Country<br> <a href="dashboard.html">Change address</a></td>
-	                							<td>&nbsp;</td>
-	                						</tr><!-- End .summary-shipping-estimate -->
-
-	                						<tr class="summary-total">
-	                							<td>Total:</td>
-	                							<td>$160.00</td>
-	                						</tr><!-- End .summary-total -->
-	                					</tbody>
-	                				</table><!-- End .table table-summary -->
-
-	                				<a href="checkout.html" class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO CHECKOUT</a>
-	                			</div><!-- End .summary -->
-
-		            			<a href="category.html" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE SHOPPING</span><i class="icon-refresh"></i></a>
-	                		</aside><!-- End .col-lg-3 -->
 	                	</div><!-- End .row -->
 	                </div><!-- End .container -->
                 </div><!-- End .cart -->
-            </div><!-- End .page-content -->
+           
+		    </div><!-- End .page-content -->
+			
         </main><!-- End .main -->
