@@ -1,63 +1,93 @@
 var express = require('express');
 var router = express.Router();
-var { ifUser,userCart } =require("../middlewares/session");
-var multer = require("multer");
-
-const{
-  home,
-  dp,
-  login,
-  signup,
-  postsignup,
-  postlogin,
-  usercart,
-  addToCart,
-  wishlist,
-  toypage,
-  deletewishlist,
-  viewpage,
-  checkout,
-  deletecart,
-  postwishlist,
-  checkoutPage,
-  placeorder,
-  orderSuccess,
-  orderSuccessVerified,
-  getAccessories,
-  food,
-  
+const{ ifUser, ifUserLogout ,ifCart, ifUserAxios,userCart}= require('../middlewares/sessionHandle')
+const {
+      userLogin,
+      aboutPage,
+      contactPage,
+      homePage,
+      profilePage,
+      cartPage,
+      checkoutPage,
+      faqPage,
+      viewProducts,
+      userSignup,
+      postSignIn,
+      userLogout,
+      addToCart,
+      getSearch,
+      getCategory,
+      productDetails,
+      wish,
+      deleteWishlist,
+      cartDelete,
+      placeOrder,
+      proceedOrder,
+      getOrderCount,
+      getOrders,
+      deleteOrder,
+      UpdateProfile,
+      orderSuccessCOD,
+      wishlistCount,
+      orderSuccessOnline,
+      getAllCategory,
+      paymentVerified,
+      
+      
+     
 } = require("../controller/user");
 
-router.get("/",ifUser,home);
-router.get("/login",login);
-router.get("/usersignup",signup);
-router.post("/postsignup",postsignup);
-router.post("/postlogin",postlogin); 
-router.get("/getproductsC/:id",dp);
-router.get("/toypage/:id",toypage);
-router.get("/viewpage/:id",viewpage);
-                                      
-router.get("/usercart",userCart,ifUser,usercart);
-router.post('/usercart/:id',ifUser,addToCart);
-router.post("/deletecart/:id",ifUser,deletecart);
-                                       
-router.get("/userwishlist",ifUser,wishlist);
-router.post("/wishlist",ifUser,postwishlist); 
-router.post("/deletewish/:id",ifUser,deletewishlist);  
+//login and sign in
+router.post('/signup',userSignup)
+router.post('/login',postSignIn)
+router.get('/login',ifUserLogout,userLogin);
+router.get('/',homePage);
+
+//pages
+router.get('/faq',faqPage)
+router.get('/about',aboutPage);
+router.get('/contact',ifUser,contactPage);
+
+
+//search
+router.get('/search',getSearch)
+
+//views
+router.get('/productdetails/:id',productDetails)
+router.get('/viewallproducts',viewProducts)
+router.get('/getcategory/:id',getCategory)
+router.get('/getAllCategory',getAllCategory)
+router.get('/profile',ifUser,profilePage);
+router.post('/updataprofile',ifUser,UpdateProfile)
+
+//wishlist
+router.post('/wishlist',ifUser,wishlistCount)
+router.get('/Wishlist',ifUser,wish);
+router.post('/deletewish/:id',ifUser,deleteWishlist)
 
 
 
-router.post("/checkout",checkoutPage);
-router.post('/placeOrder',placeorder);
-router.post('/success',orderSuccess)
-router.get('/confirmation/:id',orderSuccessVerified)
+//cart
+router.post('/addtocart/:id',ifUser,addToCart)
+router.get('/Cart',userCart,ifUser,cartPage);
+router.post('/deletecart/:id',ifUser,cartDelete)
 
 
-router.get('/getAccessories/:id',getAccessories)
+//checkout
+router.get('/checkout',userCart,ifUser,checkoutPage)
+router.post('/checkout',ifUser,checkoutPage)
+router.get('/proceedOrder',userCart,ifUser,placeOrder)
+router.post('/placeOrder',ifUser,placeOrder)
+router.get('/thank-you',orderSuccessCOD)
 
-router.get('/food/:id',food)
+//orders
+router.get('/viewOrders',ifUser,getOrders)
+router.post('/cancelOrder/:id',ifUser,deleteOrder)
 
-router.get('/viewpage',viewpage)
+//logout
+router.post('/logout',userLogout)
+router.post('/success',ifUser,orderSuccessOnline)
+router.get('/confirmation/:id',paymentVerified)
 
 
 

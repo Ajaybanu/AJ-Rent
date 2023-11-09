@@ -1,0 +1,229 @@
+
+
+<h2></h2>
+<h2></h2>
+               <div class="container-fluid">
+                    <h2 class="title text-center mb-3">View all Products Here</h2><!-- End .title -->
+                    <div class="row">
+                       {{#if data}}
+                      {{#each data}}
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
+                            <div class="product product-5 text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-top">Top</span>
+                                    <a href="/productdetails/{{this.id}}">
+                                        <img src="{{this.image}}" alt="Product image" class="product image" style="       width: 215px;
+                                                                                                                   height:  228px;">
+                                    </a>
+
+                                    <div class="product-countdown countdown-primary" data-until="2019, 10, 8"></div><!-- End .product-countdown -->
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                       
+                                        
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html">Brown cable knit cardigan</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <span class="new-price">$50.00</span>
+                                        <span class="old-price">$84.00</span>
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+                       {{/each}}
+                       {{else}}
+                       <h4>currently no products avalable</h4>
+                       {{/if}}
+                        {{!-- <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="product product-5 text-center">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="assets/images/products/elements/product-2.jpg" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html">Hooded parka jacket</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        $120.00
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-footer">
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 40%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 0 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+                                </div><!-- End .product-footer -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="product product-5 text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-sale">Sale</span>
+                                    <a href="product.html">
+                                        <img src="assets/images/products/elements/product-3.jpg" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html">Grey cable knit longline maxi  cardigan</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        $110.00
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-footer">
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 60%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 2 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+                                    <div class="product-nav product-nav-dots">
+                                        <a href="#" class="active" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                        <a href="#" style="background: #7fc5ed;"><span class="sr-only">Color name</span></a>
+                                        <a href="#" style="background: #e8c97a;"><span class="sr-only">Color name</span></a>
+                                    </div><!-- End .product-nav -->
+                                </div><!-- End .product-footer -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="product product-5 product-disabled text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-out">Out Of Stock</span>
+                                    <a href="product.html">
+                                        <img src="assets/images/products/elements/product-4.jpg" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html">Orange snake print scarf</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        <div class="out-price">$120.00</div><!-- End .out-price -->
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="product product-5 text-center">
+                                <figure class="product-media">
+                                    <span class="product-label label-new">New</span>
+                                    <a href="product.html">
+                                        <img src="assets/images/products/elements/product-5.jpg" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html">Beige knitted elastic runner shoes</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        $84.00
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-footer">
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 20%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 0 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+                                    <div class="product-nav product-nav-dots">
+                                        <a href="#" style="background: #cc9966;"><span class="sr-only">Color name</span></a>
+                                        <a href="#" class="active" style="background: #ebebeb;"><span class="sr-only">Color name</span></a>
+                                    </div><!-- End .product-nav -->
+                                </div><!-- End .product-footer -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 -->
+
+                        <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                            <div class="product product-5 text-center">
+                                <figure class="product-media">
+                                    <a href="product.html">
+                                        <img src="assets/images/products/elements/product-6.jpg" alt="Product image" class="product-image">
+                                    </a>
+
+                                    <div class="product-action-vertical">
+                                        <a href="#" class="btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                        <a href="#" class="btn-product-icon btn-quickview" title="Quick view"><span>Quick view</span></a>
+                                        <a href="#" class="btn-product-icon btn-compare" title="Compare"><span>Compare</span></a>
+                                    </div><!-- End .product-action-vertical -->
+
+                                    <div class="product-action">
+                                        <a href="#" class="btn-product btn-cart"><span>add to cart</span></a>
+                                    </div><!-- End .product-action -->
+                                </figure><!-- End .product-media -->
+
+                                <div class="product-body">
+                                    <h3 class="product-title"><a href="product.html">Grey check skinny suit jacket</a></h3><!-- End .product-title -->
+                                    <div class="product-price">
+                                        $180.00
+                                    </div><!-- End .product-price -->
+                                </div><!-- End .product-body -->
+                                <div class="product-footer">
+                                    <div class="ratings-container">
+                                        <div class="ratings">
+                                            <div class="ratings-val" style="width: 60%;"></div><!-- End .ratings-val -->
+                                        </div><!-- End .ratings -->
+                                        <span class="ratings-text">( 2 Reviews )</span>
+                                    </div><!-- End .rating-container -->
+                                </div><!-- End .product-footer -->
+                            </div><!-- End .product -->
+                        </div><!-- End .col-sm-6 col-md-4 col-lg-3 col-xl-2 --> --}}
+                    </div><!-- End .row -->
+                </div><!-- End .container-fluid -->
+
+
+
+
+

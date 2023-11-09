@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html>
+
+<!-- molla/index-22.html  22 Nov 2019 10:01:54 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Molla - Bootstrap eCommerce Template</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/assets/images/icons/site.html">
+    <link rel="mask-icon" href="/assets/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="/assets/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="/assets/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/css/plugins/owl-carousel/owl.carousel.css">
+    <link rel="stylesheet" href="/assets/css/plugins/magnific-popup/magnific-popup.css">
+    <link rel="stylesheet" href="/assets/css/plugins/jquery.countdown.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/skins/skin-demo-22.css">
+    <link rel="stylesheet" href="/assets/css/demos/demo-22.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+       
+    
+</head>
+<body>
+	
+    
+	
+       
+  <header class="header">
+           <div class="header-middle">
+                <div class="container">
+                    <div class="header-left">
+                        <button class="mobile-menu-toggler">
+                            <span class="sr-only">Toggle mobile menu</span>
+                            <i class="icon-bars"></i>
+                        </button>
+                        
+                        <a href="/" class="logo">
+                            <img src="/assets/images/icons/102-4-5-logo-rento.webp" alt="rento logo" width="105" height="25">
+                        </a>
+                    </div><!-- End .header-left -->
+
+                    <div class="header-center">
+                        <div class="header-search header-search-extended header-search-visible header-search-no-radius d-none d-lg-block">
+                            <a href="#" class="search-toggle" role="button"><i class="icon-search"></i></a>
+                            <form action="/search" method="get">
+                                <div class="header-search-wrapper search-wrapper-wide">
+                                    <label for="q" class="sr-only">Search</label>
+                                    <input type="text" class="form-control" name="name" id="q" placeholder="Search product ..." required>
+                                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                                </div><!-- End .header-search-wrapper -->
+                            </form> 
+                        </div><!-- End .header-search -->
+                    </div>
+
+                    <div class="header-right">
+                    
+                           
+                    
+                              <a href="/wishlist" class="wishlist-link">
+                            <i class="icon-heart-o"></i>
+                          
+                            <span class="wishlist-count">{{user.wishList.length}}</span>
+                        
+                        
+                            
+                                </a>
+
+                      <div class="dropdown cart-dropdown">
+                            <a href="/Cart" class="dropdown-toggle" >
+                                <i class="icon-shopping-cart"></i>
+                                 {{#with user}}
+                              <span class="cart-count">{{#if session.cartCount}}{{session.cartCount}}{{else}}{{this.cart.length}}{{/if}}</span>
+                                  {{/with}}
+                              </a>
+                        </div>
+                         <div class="dropdown cart-dropdown">
+                            <a href="/profile" class="dropdown-toggle" >
+                              <i class="bi bi-person-fill-gear"></i>
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill-gear" viewBox="0 0 16 16">
+  <path d="M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm-9 8c0 1 1 1 1 1h5.256A4.493 4.493 0 0 1 8 12.5a4.49 4.49 0 0 1 1.544-3.393C9.077 9.038 8.564 9 8 9c-5 0-6 3-6 4Zm9.886-3.54c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382l.045-.148ZM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z"/>
+</svg>
+                            
+                              </a>
+                        </div>
+                        <div class="dropdown cart-dropdown">
+                            <a href="/viewOrders" class="dropdown-toggle" >
+                              <i class="bi bi-person-fill-gear"></i>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-check-fill" viewBox="0 0 16 16">
+  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708z"/>
+</svg>
+                            
+                              </a>
+                        </div>
+                        
+                    </div><!-- End .header-right -->
+                </div><!-- End .container -->
+            </div><!-- End .header-middle -->
+
+            <div class="wrap-container ">
+                <div class="header-bottom">
+                    <div class="container">
+                        <div class="header-left">
+                            <div class="dropdown category-dropdown" data-visible="true">
+                                <a href="/getAllCategory" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" data-display="static" title="Browse Categories">
+                                    Browse Categories
+                                </a>
+
+                                <div class="dropdown-menu">
+                                    <nav class="side-nav">
+                                        <ul class="menu-vertical sf-arrows sf-js-enabled" style="touch-action: pan-y;">
+                                            {{#each categories}}
+                                            <li class="megamenu-container">
+                                                <a class="sf-with-ul"  href="/getcategory/{{id}}"><i class="icon-concierge-bell"></i>{{name}}</a>
+                                              </li>
+                                              {{/each}}
+                                        </ul><!-- End .menu-vertical -->
+                                    </nav><!-- End .side-nav -->
+                                </div><!-- End .dropdown-menu -->
+                            </div>
+                        </div>
+                        <div class="header-center">
+                        <nav class="main-nav">
+                        
+                            <ul class="menu sf-arrows">
+
+                                <li>
+                                    <a href="/products" class="sf-with-ul">Product</a>
+
+                                    <div class="megamenu megamenu-sm">
+                                        <div class="row no-gutters">
+                                            <div class="col-md-6">
+                                                <div class="menu-col">
+                                                    <div class="menu-title">Product Details</div><!-- End .menu-title -->
+                                                    <!-- <ul>
+                                                        <li><a href="pages/product.html">Default</a></li>
+                                                        <li><a href="pages/product-centered.html">Centered</a></li>
+                                                        <li><a href="pages/product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
+                                                        <li><a href="pages/product-gallery.html">Gallery</a></li>
+                                                        <li><a href="pages/product-sticky.html">Sticky Info</a></li>
+                                                        <li><a href="pages/product-sidebar.html">Boxed With Sidebar</a></li>
+                                                        <li><a href="pages/product-fullwidth.html">Full Width</a></li>
+                                                        <li><a href="pages/product-masonry.html">Masonry Sticky Info</a></li>
+                                                    </ul> -->
+                                                </div><!-- End .menu-col -->
+                                            </div><!-- End .col-md-6 -->
+
+                                           
+                                        </div><!-- End .row -->
+                                    </div><!-- End .megamenu megamenu-sm -->
+                                </li>
+                                <li>
+                                    <a href="#" class="sf-with-ul">Pages</a>
+
+                                    <ul>
+                                        <li>
+                                            <a href="/about" class="sf-with-ul">About</a>
+                                        </li>
+                                        <li>
+                                            <a href="/contact" class="sf-with-ul">Contact</a>
+
+                                           
+                                        </li>
+                                        <li><a href="/" >home</a></li>
+                                        <li><a href="/faq">FAQs</a></li>
+                                        {{!-- <li><a href="404.html">Error 404</a></li>
+                                        <li><a href="coming-soon.html">Coming Soon</a></li> --> --}}
+                                    </ul>
+                                </li>
+                                
+                                {{!-- <li>
+                                    <a href="elements-list.html" class="sf-with-ul">Elements</a>
+
+                                    <ul>
+                                        <li><a href="elements-products.html">Products</a></li>
+                                        <li><a href="elements-typography.html">Typography</a></li>
+                                        <li><a href="elements-titles.html">Titles</a></li>
+                                        <li><a href="elements-banners.html">Banners</a></li>
+                                        <li><a href="elements-product-category.html">Product Category</a></li>
+                                        <li><a href="elements-video-banners.html">Video Banners</a></li>
+                                        <li><a href="elements-buttons.html">Buttons</a></li>
+                                        <li><a href="elements-accordions.html">Accordions</a></li>
+                                        <li><a href="elements-tabs.html">Tabs</a></li>
+                                        <li><a href="elements-testimonials.html">Testimonials</a></li>
+                                        <li><a href="elements-blog-posts.html">Blog Posts</a></li>
+                                        <li><a href="elements-portfolio.html">Portfolio</a></li>
+                                        <li><a href="elements-cta.html">Call to Action</a></li>
+                                        <li><a href="elements-icon-boxes.html">Icon Boxes</a></li>
+                                    </ul>
+                                </li> --}}
+                            </ul><!-- End .menu -->
+                        </nav><!-- End .main-nav -->
+                    </div><!-- End .header-center -->
+
+                        <div class="header-right ">
+                             <div class="header-text">
+                                <ul class="top-menu top-link-menu">
+                                    <li>
+                                        <ul>
+                                            {{#if session.user}}
+                                            <form action="/logout" method="post">
+                                            <li><button type="submit" data-toggle="modal"class="btn btn-dark">Log Out</button></li></form>
+                                            {{else}}
+                                            <li><a href="#signin-modal" data-toggle="modal"><i class="icon-user"></i>Login / Registration</a></li>
+                                            {{/if}}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div><!-- End .header-text -->
+                        </div><!-- End .header-right -->
+                    </div><!-- End .container -->
+                </div><!-- End .header-bottom -->
+            </div><!-- End .wrap-container -->
+        </header><!-- End .header -->
+                                      
+
+
+
+      {{{body}}}
+
+<footer class="footer">
+            <div class="" style="    padding: 5.7rem 0 2.2rem;
+    margin-bottom: -6rem;">
+                 <div class="container">
+	            	<div class="row">
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget widget-about">
+	            				<img src="/assets/images/icons/102-4-5-logo-rento.webp" class="footer-logo" alt="Footer Logo" width="105" height="25">
+	            				
+	            				<div class="social-icons">
+	            					<a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+	            					<a href="#" class="social-icon" target="_blank" title="Pinterest"><i class="icon-pinterest"></i></a>
+	            				</div><!-- End .soial-icons -->
+	            			</div><!-- End .widget about-widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget">
+	            				<h4 class="widget-title">Useful Links</h4><!-- End .widget-title -->
+
+	            				<ul class="widget-list">
+	            					<li><a href="/about">About Rento</a></li>
+	            					<li><a href="/faq">FAQ</a></li>
+	            					<li><a href="/contact">Contact us</a></li>
+	
+	            				</ul><!-- End .widget-list -->
+	            			</div><!-- End .widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget">
+	            				<h4 class="widget-title">Customer Service</h4><!-- End .widget-title -->
+
+	            				<ul class="widget-list">
+
+	            					<li><a href="#">Returns</a></li>
+	            					<li><a href="#">Shipping</a></li>
+	            					<li><a href="#">Terms and conditions</a></li>
+	            					
+	            				</ul><!-- End .widget-list -->
+	            			</div><!-- End .widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+
+	            		<div class="col-sm-6 col-lg-3">
+	            			<div class="widget">
+	            				<h4 class="widget-title">My Account</h4><!-- End .widget-title -->
+
+	            				<ul class="widget-list">
+	            					<li><a href="/">Sign In</a></li>
+	            					<li><a href="/cart">View Cart</a></li>
+	            					<li><a href="/wishlist">My Wishlist</a></li>
+	            				</ul><!-- End .widget-list -->
+	            			</div><!-- End .widget -->
+	            		</div><!-- End .col-sm-6 col-lg-3 -->
+	            	</div><!-- End .row -->
+	            </div><!-- End .container -->
+            </div><!-- End .footer-middle -->
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <p class="footer-copyright">Copyright © 2019 Molla Store. All Rights Reserved.</p><!-- End .footer-copyright -->
+                    <figure class="footer-payments">
+                        <img src="/assets/images/payments.png" alt="Payment methods" width="272" height="20">
+                    </figure><!-- End .footer-payments -->
+                </div><!-- End .container -->
+            </div><!-- End .footer-bottom -->
+        </footer><!-- End .footer -->
+
+
+
+     <div class="mobile-menu-overlay"></div><!-- End .mobil-menu-overlay -->
+        <div class="mobile-menu-container mobile-menu-light">
+            <div class="mobile-menu-wrapper">
+                <span class="mobile-menu-close"><i class="icon-close"></i></span>
+
+                <form action="#" method="get" class="mobile-search">
+                    <label for="mobile-search" class="sr-only">Search</label>
+                    <input type="search" class="form-control" name="mobile-search" id="mobile-search" placeholder="Search in..." required>
+                    <button class="btn btn-primary" type="submit"><i class="icon-search"></i></button>
+                </form>
+                
+                <nav class="mobile-nav">
+                    <ul class="mobile-menu">
+                        <li class="active">
+                            <a href="/">Home</a>
+
+                            <ul>
+                                <li><a href="index-1.html">01 - furniture store</a></li>
+                                <li><a href="index-2.html">02 - furniture store</a></li>
+                                <li><a href="index-3.html">03 - electronic store</a></li>
+                                <li><a href="index-4.html">04 - electronic store</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="category.html">Shop</a>
+                         <ul>
+                                <li><a href="category-list.html">Shop List</a></li>
+                                <li><a href="category-2cols.html">Shop Grid 2 Columns</a></li>
+                                <li><a href="category.html">Shop Grid 3 Columns</a></li>
+                                <li><a href="category-4cols.html">Shop Grid 4 Columns</a></li>
+                         </ul>
+                        </li>
+                        <li>
+                            <a href="product.html" class="sf-with-ul">Product</a>
+                            <ul>
+                                <li><a href="product.html">Default</a></li>
+                                <li><a href="product-centered.html">Centered</a></li>
+                                <li><a href="product-extended.html"><span>Extended Info<span class="tip tip-new">New</span></span></a></li>
+                               
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Pages</a>
+                            <ul>
+                                <li>
+                                    <a href="/about">About</a>
+
+                                    
+                                </li>
+                                <li>
+                                    <a href="/contact">Contact</a>
+
+                            
+                                </li>
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="/faq">FAQs</a></li>
+                                <li><a href="/404">Error 404</a></li>
+                               
+                            </ul>
+                        </li>
+                        
+                        
+                    </ul>
+                </nav><!-- End .mobile-nav -->
+
+                <div class="social-icons">
+                    <a href="#" class="social-icon" target="_blank" title="Facebook"><i class="icon-facebook-f"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Twitter"><i class="icon-twitter"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Instagram"><i class="icon-instagram"></i></a>
+                    <a href="#" class="social-icon" target="_blank" title="Youtube"><i class="icon-youtube"></i></a>
+                </div><!-- End .social-icons -->
+            </div><!-- End .mobile-menu-wrapper -->
+        </div><!-- End .mobile-menu-container -->
+
+
+
+          <!-- Sign in / Register Modal -->
+                 <div class="modal fade" id="signin-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="icon-close"></i></span>
+                    </button>
+
+                    <div class="form-box">
+                        <div class="form-tab">
+                            <ul class="nav nav-pills nav-fill" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="signin-tab" data-toggle="tab" href="#signin" role="tab" aria-controls="signin" aria-selected="true">Sign In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="register-tab" data-toggle="tab" href="#register" role="tab" aria-controls="register" aria-selected="false">Register</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="tab-content-5">
+                                <div class="tab-pane fade show active" id="signin" role="tabpanel" aria-labelledby="signin-tab">
+                                    <form action="/login" method="post">
+                                        <div class="form-group">
+                                            <label for="singin-email">Username or email address *</label>
+                                            <input type="text" class="form-control" id="singin-email" name="email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="singin-password">Password *</label>
+                                            <input type="password" class="form-control" id="singin-password" name="password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>LOG IN</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+                                            {{!-- <a href="#" class="forgot-link">Forgot Your Password?</a> --}}
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                    
+                                </div><!-- .End .tab-pane -->
+
+                                
+                                <div class="tab-pane fade" id="register" role="tabpanel" aria-labelledby="register-tab">
+                                    <form action="/signup" method="post">
+                                     <div class="form-group">
+                                            <label for="register-email">Enter your name here</label>
+                                            <input type="text" class="form-control" id="register-email" name="name" required >
+                                        </div><!-- End .form-group -->
+                                         <div class="form-group">
+                                            <label for="register-email">Enter your mobile no</label>
+                                            <input type="number" class="form-control" id="register-email" name="mobile" required>
+                                        </div><!-- End .form-group -->
+
+
+                                        <div class="form-group">
+                                            <label for="register-email">Your email address *</label>
+                                            <input type="email" class="form-control" id="register-email" name="email" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-group">
+                                            <label for="register-password">Password *</label>
+                                            <input type="password" class="form-control" id="register-password" name="password" required>
+                                        </div><!-- End .form-group -->
+
+                                        <div class="form-footer">
+                                            <button type="submit" class="btn btn-outline-primary-2">
+                                                <span>SIGN UP</span>
+                                                <i class="icon-long-arrow-right"></i>
+                                            </button>
+
+                                            
+                                        </div><!-- End .form-footer -->
+                                    </form>
+                                    
+                                </div><!-- .End .tab-pane -->
+                            </div><!-- End .tab-content -->
+                        </div><!-- End .form-tab -->
+                    </div><!-- End .form-box -->
+                </div><!-- End .modal-body -->
+            </div><!-- End .modal-content -->
+        </div><!-- End .modal-dialog -->
+    </div><!-- End .modal -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script>
+    // When user clicks the button, make an AJAX request to add item to wishlist
+    $('.add-to-wishlist').click(function() {
+    const itemID = $(this).data('item-id');
+
+    $.ajax({
+        url: '/wishlist',
+        method: 'POST',
+        data: { itemID: itemID },
+        success: (response) => {
+            console.log(response);
+           alert(response.message);
+        },
+        error: () => {
+            console.error('Error adding item to wishlist');
+            alert(response.message);
+        }
+    });
+});
+</script>
+
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/jquery.hoverIntent.min.js"></script>
+    <script src="assets/js/jquery.waypoints.min.js"></script>
+    <script src="assets/js/superfish.min.js"></script>
+    <script src="assets/js/owl.carousel.min.js"></script>
+    <script src="assets/js/jquery.plugin.min.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+    <script src="assets/js/jquery.countdown.min.js"></script>
+    <!-- Main JS File -->
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/demos/demo-2.js"></script>
+  </body>
+</html>

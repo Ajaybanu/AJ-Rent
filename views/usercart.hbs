@@ -1,95 +1,112 @@
-     <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
-        		<div class="container">
-        			<h1 class="page-title">Shopping Cart<span>Shop</span></h1>
-        		</div><!-- End .container -->
-        	</div><!-- End .page-header -->
-           
-{{Cart}}
-            <div class="page-content">
-            	<div class="cart">
-	                <div class="container">
-	                	<div class="row">
-	                		<div class="col-lg-9">
-	                			<table class="table table-cart table-mobile">
-									{{#each Cart}}
-									<thead>
-										<tr>
-											<th>{{this.name}}</th>
-											<th>{{this.price}}</th>
-											<th>{{this.quantity}}</th>
-											{{!-- <th>{{this.image}}</th> --}}
+<div class="page-wrapper">
 
-											<th>Total</th>
-											<th></th>
-										</tr>
-									</thead>
-									{{/each}}
 
-									<tbody>
-										{{#each Cart}}
+	<main class="main">
+		<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+			<div class="container">
+				<h1 class="page-title">Shopping Cart<span>Shop</span></h1>
+			</div><!-- End .container -->
+		</div><!-- End .page-header -->
+		<nav aria-label="breadcrumb" class="breadcrumb-nav">
+			<div class="container">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/">Home</a></li>
+
+					<li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
+				</ol>
+			</div><!-- End .container -->
+		</nav><!-- End .breadcrumb-nav -->
+
+		<div class="page-content">
+			<div class="cart">
+				<div class="container">
+					<div class="row">
+
+						<div class="col-lg-9">
+							{{#if Cart}}
+							<table class="table table-cart table-mobile">
+								<thead>
+									<tr>
+										<th>Image</th>
+										<th>Product</th>
+										<th>Brand</th>
+
+										<th>Price</th>
+
+
+										<th></th>
+									</tr>
+								</thead>
+
+								<tbody>
 									
+									{{#each Cart }}
+
+									<div>
 										<tr>
 											<td class="product-col">
-																							<div class="product">
+												<div class="product">
 													<figure class="product-media">
 														<a href="/productdetails/{{this.id}}">
 															<img src="{{this.image}}" alt="Product image">
 														</a>
 													</figure>
 												</div><!-- End .product -->
-	
 											</td>
-											<td class="price-col">Rs.{{this.price}}</td>
-											<td class="quantity-col">
-                                                <div class="cart-product-quantity">
-                                                    <input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
-                                                </div><!-- End .cart-product-quantity -->
-                                            </td>
-											<td class="total-col">Rs.199</td>{{this.id}}
-											<form action="/deletecart/{{this.id}}" method="post" >
-											<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
-										</form>
+											<td><a href="/productdetails/{{this.id}}">
+													<h3 class="product-title">{{this.name}}</h3>
+												</a></td>
+											<td class="product-title">{{this.brand}}</td>
+
+											<td class="product-title">{{this.price}}</td>
+
+
+
+
+
+											<td class="remove-col">
+												<form action="/deletecart/{{this.id}}" method="post"><button
+														type="submit" class="btn-remove"><i
+															class="icon-close"></i></button></form>
+											</td>
+
+
+
+
 										</tr>
+									</div>
 
-
-										{{/each}}
 									
-									</tbody>
-								</table><!-- End .table table-wishlist -->
 
-	                			<div class="cart-bottom">
-			            			<div class="cart-discount">
-			            				<form action="#">
-			            					<div class="input-group">
-				        						<input type="text" class="form-control" required placeholder="coupon code">
-				        						<div class="input-group-append">
-													<button class="btn btn-outline-primary-2" type="submit"><i class="icon-long-arrow-right"></i></button>
-												</div><!-- .End .input-group-append -->
-			        						</div><!-- End .input-group -->
-			            				</form>
-			            			</div><!-- End .cart-discount -->
-
-			            			<a href="#" class="btn btn-outline-dark-2"><span>UPDATE CART</span><i class="icon-refresh"></i></a>
-		            			</div><!-- End .cart-bottom -->
-	                		</div><!-- End .col-lg-9 -->
-	                		<aside class="col-lg-3">
+									
+								</tbody>
+								{{/each}}
+								{{else}}
+									<h2>please add some products to your cart . . .</h2>
+									{{/if}}
+							</table><!-- End .table table-wishlist -->
+						</div>
+						{{#if cartProducts}}
+						<aside class="col-lg-3">
 							<div class="summary summary-cart">
 								<h3 class="summary-title">Proceed To Order</h3><!-- End .summary-title -->
-
+                   
 								<table class="table table-summary">
 									<tbody>{{#each cartProducts}}
 										<tr class="summary-subtotal">
 											<td>Name:</td>
-											<td>{{this.name}}</td>
+											<td>{{this.productName}}</td>
 										</tr><!-- End .summary-subtotal -->
 										<tr>
 											<td>Price:</td>
 											<td>{{this.price}}</td>
 										</tr>
-										
 										<tr>
-											<td>quantity:</td>
+											<td>Days:</td>
+											<td>{{this.daysOfRent}}</td>
+										</tr>
+										<tr>
+											<td>Quantity:</td>
 											<td>{{this.quantity}}</td>
 										</tr>
 										<tr>
@@ -135,16 +152,45 @@
 							<button type="submit">	<a class="btn btn-outline-primary-2 btn-order btn-block">PROCEED TO
 									CHECKOUT</a></button>
 									</form>
+						{{/if}}
 							</div><!-- End .summary -->
 
 							<a href="/viewproducts" class="btn btn-outline-dark-2 btn-block mb-3"><span>CONTINUE
 									SHOPPING</span><i class="icon-refresh"></i></a>
 						</aside><!-- End .col-lg-3 -->
 
-	                	</div><!-- End .row -->
-	                </div><!-- End .container -->
-                </div><!-- End .cart -->
-           
-		    </div><!-- End .page-content -->
-			
-        </main><!-- End .main -->
+
+						</form>
+
+					</div><!-- End .row -->
+				</div><!-- End .container -->
+			</div><!-- End .cart -->
+		</div><!-- End .page-content -->
+	</main><!-- End .main -->
+	{{!-- <tr>
+		<td class="product-col">
+			<div class="product">
+				<figure class="product-media">
+					<a href="#">
+						<img src="assets/images/products/table/product-2.jpg" alt="Product image">
+					</a>
+				</figure>
+
+				<h3 class="product-title">
+					<a href="#">Blue utility pinafore denim dress</a>
+				</h3><!-- End .product-title -->
+			</div><!-- End .product -->
+		</td>
+		<td class="price-col">$76.00</td>
+		<td class="quantity-col">
+			<div class="cart-product-quantity">
+				<input type="number" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0"
+					required>
+			</div><!-- End .cart-product-quantity -->
+		</td>
+		<td class="total-col">$76.00</td>
+		<td class="remove-col"><button class="btn-remove"><i class="icon-close"></i></button></td>
+	</tr> --}}
+
+</div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>

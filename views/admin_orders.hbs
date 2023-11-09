@@ -1,0 +1,202 @@
+       <table class="table mb-0">
+                                            <thead class="bg-light">
+                                                <tr>
+                                                    <th>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                            <label class="custom-control-label" for="customCheck1">&nbsp;</label>
+                                                        </div>
+                                                    </th>
+                                                    <th>Order ID</th>
+                                                    <th>Billing Name</th>
+                                                    <th>Date</th>
+                                                    <th>Total</th>
+                                                    <th>Order Status</th>
+                                                    <th>Payment Method</th>
+                                                    <th>View Details</th>
+                                                    <th>Action</th>
+                                                    <th> PaymentAction</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                {{#each orderList}}
+                                                <tr>
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                                            <label class="custom-control-label" for="customCheck2">&nbsp;</label>
+                                                        </div>
+                                                    </td>
+                                                    <td><a href="#">{{this.orderId}}</a> </td>
+                                                    <td>{{this.deliveryAddress.firstName}} {{this.deliveryAddress.lastName}}</td>
+                                                    <td>
+                                                        {{this.Order_date}}
+                                                    </td>
+                                                    <td>
+                                                        ₹{{this.totalPrice}}
+                                                    </td>
+                                                    <td id="status{{this.orderId}}">
+                                                        {{#equal this.orderStatus "delivered"}}
+                                                         <span class="badge rounded-pill bg-soft-green">Delivered</span>
+                                                       {{/equal}}
+                                                       {{#equal this.orderStatus "cancelled"}}
+                                                         <span class="badge rounded-pill bg-soft-pink">Cancelled</span>
+                                                       {{/equal}}
+                                                       
+                                                       {{#equal this.orderStatus "processing"}}
+                                                       <span class="badge rounded-pill bg-soft-orange">Processing</span>
+                                                       {{/equal}}
+                                                       {{#equal this.orderStatus "Confirmed"}}
+                                                         <span class="badge rounded-pill bg-soft-green">Confirmed</span>
+                                                       {{/equal}}
+                                                       {{#equal this.orderStatus "returned"}}
+                                                         <span class="badge rounded-pill bg-soft-pink">Returned</span>
+                                                       {{/equal}}
+                                                        
+                                                        
+                                                        
+
+                                                    </td>
+                                                    <td>
+                                                      {{this.Payment}}
+                                                    </td>
+                                                    <td>
+                                                        <a href="/admin/orders?orderreq={{this.orderId}}"><button type="button" class="btn btn-primary btn-sm btn-rounded">
+                                                            View Details
+                                                        </button></a> 
+                                                    </td>
+                                                    <td class="">
+                                                        <div class="drop">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+    Action
+  </button>
+  <ul class="dropdown-menu" id="drop{{this.orderId}}"  aria-labelledby="dropdownMenuButton1">
+    {{#equal this.orderStatus "Confirmed"}}
+     <li><a class="dropdown-item" onclick="edit('{{this.orderId}}','processing')" >Process Order</a></li>
+    <li><a class="dropdown-item"   onclick="edit('{{this.orderId}}','cancelled')"   >Cancel Order</a></li> 
+    <li><a class="dropdown-item"    onclick="edit('{{this.orderId}}','returned')"   >Return Order</a></li>                                                   
+    {{/equal}}
+    {{#equal this.orderStatus "processing"}}
+    <li><a class="dropdown-item" onclick="edit('{{this.orderId}}','delivered')" >Deliver Order</a></li>
+    <li><a class="dropdown-item"    onclick="edit('{{this.orderId}}','cancelled')"   >Cancel Order</a></li>
+      <li><a class="dropdown-item"    onclick="edit('{{this.orderId}}','returned')"   >Return Order</a></li>                                                  
+    {{/equal}}
+    {{#equal this.orderStatus "delivered"}}
+      <li><a class="dropdown-item"    onclick="edit('{{this.orderId}}','returned')"   >Return Order</a></li>                                                  
+    {{/equal}}
+  </ul>
+</div>
+
+                                                    </td>
+
+       <td class="">
+                                                        <div class="drop">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+   Payment
+  </button>
+  <ul class="dropdown-menu" id="paymentdrop{{this.orderId}}"  aria-labelledby="dropdownMenuButton1">
+    {{#equal this.paymentStatus "pending"}}
+     <li><a class="dropdown-item" onclick="editPayment('{{this.orderId}}','paid')" >Payment Success</a></li>
+    <li><a class="dropdown-item"   onclick="editPayment('{{this.orderId}}','pending')"   >Pending</a></li> 
+    <li><a class="dropdown-item"    onclick="editPayment('{{this.orderId}}','refund')"   >Refund</a></li>                                                   
+    {{/equal}}
+    {{#equal this.paymentStatus "paid"}}
+    <li><a class="dropdown-item"    onclick="editPayment('{{this.orderId}}','refund')"   >Refund</a></li>                                                  
+    {{/equal}}
+    
+  </ul>
+</div>
+
+                                                    </td>                                             
+                                                </tr>
+                                            {{/each }}
+                                              
+
+                                            </tbody>
+                                        </table>
+
+
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.2.3/axios.min.js"></script>
+     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script>
+   const Toast = Swal.mixin({
+                toast: true,
+                position: "center-end",
+                showConfirmButton: false,
+                timer: 1000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener("mouseenter", Swal.stopTimer);
+                    toast.addEventListener("mouseleave", Swal.resumeTimer);
+                }
+            })
+        function edit(orderId,action){
+        
+        axios.patch('/admin/orders',{orderId,action}).then((response)=>{
+            console.log(response)
+            let{action}=response.data
+            
+        if(response.data.msg){
+        if(action=="cancelled"){
+         document.getElementById(`status${orderId}`).innerHTML=`<span class="badge rounded-pill bg-soft-pink">Cancelled</span>`
+          document.getElementById(`drop${orderId}`).innerHTML=` `  
+        }
+        else if(action=="processing"){
+           document.getElementById(`status${orderId}`).innerHTML=`<span class="badge rounded-pill bg-soft-orange">processing</span>` 
+         document.getElementById(`drop${orderId}`).innerHTML=`<li><a class="dropdown-item" onclick="edit('${orderId}','delivered')" >Deliver Order</a></li>
+        <li><a class="dropdown-item"    onclick="edit('${orderId}','cancelled')"   >Cancel Order</a></li>
+     `
+        } 
+        else if(action=="delivered"){
+         document.getElementById(`status${orderId}`).innerHTML=`<span class="badge rounded-pill bg-soft-green">Delivered</span>`
+         document.getElementById(`drop${orderId}`).innerHTML=`<li><a class="dropdown-item"    onclick="edit('${orderId}','returned')"   >Return Order</a></li>`   
+        } 
+        else if(action=="returned"){
+         document.getElementById(`status${orderId}`).innerHTML=`<span class="badge rounded-pill bg-soft-pink">Returned</span>`
+         document.getElementById(`drop${orderId}`).innerHTML=` `    
+        } 
+        }
+        Toast.fire({
+                            icon: "success",
+                            title: "SUCCESS",
+                            text: `Payment ${action}`
+                        });
+        })
+         
+        }
+     </script>
+     <script>
+    
+        function editPayment(orderId,action){
+        console.log(45555555555555555)
+        axios.put('/admin/orders',{orderId,action}).then((response)=>{
+            console.log(response)
+            let{action}=response.data
+            
+        if(response.data.msg){
+        if(action=="paid"){
+         document.getElementById(`paymentdrop${orderId}`).innerHTML=` `  
+        }
+        else if(action=="pending"){ 
+       document.getElementById(`paymentdrop${orderId}`).innerHTML=`<li><a class="dropdown-item" onclick="editPayment('${orderId}','paid')" >Payment Success</a></li>
+    <li><a class="dropdown-item"   onclick="editPayment('${orderId}','pending')"   >Pending</a></li> 
+    <li><a class="dropdown-item"    onclick="editPayment('${orderId}','refund')"   >Refund</a></li>  `
+        } 
+        else if(action=="refund"){
+         document.getElementById(`paymentdrop${orderId}`).innerHTML=` `
+         } 
+         
+        }
+        Toast.fire({
+                            icon: "success",
+                            title: "SUCCESS",
+                            text: `Payment ${action}`
+                        });
+        })
+         
+        }
+     </script>
+    <!-- jQuery -->
+    <script src="/pluginsNA/jquery/jquery.min.js"></script>

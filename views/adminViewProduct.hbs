@@ -1,0 +1,85 @@
+
+
+
+ <div class="page-wrapper">
+    
+
+  <main class="main">
+        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">admin<span>Products</span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                      
+                        <li class="breadcrumb-item active" aria-current="page">products</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+				{{#if items}}
+            	<div class="container">
+					<table class="table table-wishlist table-mobile">
+						<thead>
+							<tr>
+								<th>Product</th>
+                                <th>Brand</th>
+                                <th>Title</th>
+                                
+								<th>Price</th>
+                                <th>wishlisted</th>
+								<th>Stock Status</th>
+								
+								<th></th>
+                                <th></th>
+							</tr>
+						</thead>
+
+						<tbody>
+							{{#each items}}
+							<tr>
+								<td class="product-col">
+									<div class="product">
+										<figure class="product-media">
+											<a href="/productdetails/{{this.id}}">
+												<img src="/../{{this.image}}" alt="Product image">
+											</a>
+										</figure>
+
+										
+									</div><!-- End .product -->
+								</td>
+                                <td class="brand-col">{{this.brand}}</td>
+                                <td class="title-col">{{this.name}}</td>
+								<td  class="price-col">{{this.price}}</td>
+                                <td class="wishlisted-col">{{this.wishList.length}}<a href="/admin/viewwishlisted/{{this.id}}"> User added to wishlist</a></td>
+								<td class="stock-col"><span class="in-stock">In stock</span></td>
+								
+								<td class="action-col">
+									{{!-- <form action="/addtocart/{{this.id}}" method="post">
+									<button class="btn btn-block btn-outline-primary-2"><i class="icon-cart-plus"></i>Add to Cart</button>
+				                   </form>				 --}}
+								</td>
+								
+                                <td class="edit-col">  <a href="/admin/productedit/{{this.id}}" class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a></td>
+                                <td class="remove-col"> <a href="/admin/delete/{{this.id}}" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a></td>
+							</tr>
+							{{/each}}
+							
+						</tbody>
+					</table><!-- End .table table-wishlist -->
+	        
+            	</div><!-- End .container -->
+				{{else}}
+				<div class="container">
+				<h3>no products available right now</h3>
+				</div>
+{{/if}}
+            </div><!-- End .page-content -->
+			
+        </main><!-- End .main -->
+</div>

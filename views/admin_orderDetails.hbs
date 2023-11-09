@@ -1,0 +1,26 @@
+ <form class="needs-validation" novalidate>
+                                        <div class="row">
+                                            <div class="col-md-12 mb-2">
+                                                <div class="form-group">
+                                                    <label for="validationCustom01">Status</label>
+                                                    <select class="form-select form-control" id="validationCustom01" disabled aria-label="">
+                                                        <option selected>{{orderList.orderStatus}}</option>
+                                                        <option value="1">Processing</option>
+                                                        <option value="2">Completed</option>
+                                                        <option value="3">Cancelled </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 mb-2">
+                                                <div class="form-group">
+                                                    <label>Date Created</label>
+                                                    <div>
+                                                        <input type="text" readonly value="{{orderList.Order_date}}" class="form-control date-picker">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </form>
+
+                    

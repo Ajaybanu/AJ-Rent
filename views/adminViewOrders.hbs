@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="   https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"></script>
+<script src="/../Rento/public/javascripts/wish.js"></script>
+
+<div class="page-wrapper">
+    <main>
+
+        <div class="container">
+
+
+
+{{#if orderList}}
+
+            <div class="table table-wishlist table-mobile">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="text-center">
+                                <div class="toggle-btn">
+                                    <div class="inner-circle"></div>
+                                </div>
+                            </th>
+                            <th>Order #</th>
+                            <th>Costomer name</th>
+                            <th>order status</th>
+                            <th>Total</th>
+                            <th>Created</th>
+                            <th>Edit Status</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        {{#each orderList }}
+
+                        <tr class="cell-1">
+                            <td class="text-center">
+                                <div class="toggle-btn">
+                                    <div class="inner-circle"></div>
+                                </div>
+                            </td>
+                            <td>{{this.orderId}}</td>
+                            <td>{{this.userId}}</td>
+                            <td><span class="badge badge-success"> {{this.orderStatus}}</span></td>
+                            <td>{{this.totalPrice}}</td>
+                            <td>{{this.orderDate}}</td>
+                            <td>
+                                  <form action="/admin/update-order-status/{{this.orderId}}" method="POST">
+                                <select name="newOrderStatus">
+                                    <option value="{{this.orderStatus}}">{{this.orderStatus}}</option>
+                                    <option value="Delivered">Delivered</option>
+                                    <option value="Delivery Postponed">Delivery Postponed</option>
+                                    <option value="cancelled">order cancelled</option>
+                                    <option value="returned">Product returned</option>
+
+                                </select>
+                                <button type="submit">Update</button>
+                            </form>
+                            </td>
+                          <td class="remove-col"> <a href="/admin/deleteOrder/{{this.orderId}}" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a></td>
+						
+                        </tr>
+                        {{/each}}
+
+                    </tbody>
+                </table>
+            </div>
+
+{{else}}
+<div class="container">
+    <h3>no products ordered yet</h3>
+</div>
+{{/if}}
+
+
+
+
+        </div>
+    </main>
+
+</div>

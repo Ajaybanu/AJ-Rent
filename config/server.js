@@ -1,15 +1,15 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+async function connect() {
+    try {mongoose.set('strictQuery',true)
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
+        console.log('Connected to the database Atlas');
+    } catch (error) {
+        console.error('Error connecting to the database:', error);
+    }
+}
 
-
-mongoose.set('strictQuery', false);
-mongoose.connect('mongodb://127.0.0.1:27017/pet-paradise', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-var db = mongoose.connection
-db.on("error", (err) => {
-  console.log(err);
-})
-db.once('open', () => {
-  console.log("database connected");
-})
+module.exports = connect;

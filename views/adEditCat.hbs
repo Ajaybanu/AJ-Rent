@@ -1,0 +1,21 @@
+<div class="page-wrapper">
+	{{#with category}}
+	<form action="/admin/updatecategory/{{this.id}}" method="post" enctype="multipart/form-data">
+
+
+		<label>Category Name</label>
+		<input type="text" name="name" value="{{this.name}}" class="form-control" required>
+		<small class="form-text">specifies name of a Category</small>
+
+		<div class="form-group col-md-6">
+			<input type="file" name="image" value="{{this.image}}" class="form-control" id="inputGroupFile02">
+			<label class="input-group-text" for="inputGroupFile02">Upload</label>
+		</div>
+
+		<button type="submit" class="btn btn-outline-primary-2">
+			<span>SAVE CHANGES</span>
+			<i class="icon-long-arrow-right"></i>
+		</button>
+	</form>
+	{{/with}}
+</div>

@@ -1,0 +1,480 @@
+<script type="text/javascript">
+    window.history.forward();
+    function noBack() {
+        window.history.forward();
+    }
+</script>
+    <div class="page-wrapper">
+
+        <main class="main">
+        	<div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
+        		<div class="container">
+        			<h1 class="page-title">Checkout<span>Shop</span></h1>
+        		</div><!-- End .container -->
+        	</div><!-- End .page-header -->
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <div class="container">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="/">Shop</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                    </ol>
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+            	<div class="checkout">
+	                <div class="container">
+            			<div class="checkout-discount">
+            				<form action="#">
+        						
+								{{#with couponData }}
+						         <h5>coupon {{this.couponCode}}applied successfully</h5>
+								 <input type="" name="coupon"  value="{{this.couponCode}}" class="form-control" required>
+            				    {{/with}} 
+							
+								
+							</form>
+            			</div><!-- End .checkout-discount -->
+									
+			
+				
+			{{#if address}}
+            			<form action="/placeOrder" method="post" >
+		                	<div class="row">
+								
+									{{#with address}}
+		                		<div class="col-lg-9">
+		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+		                				<div class="row">
+		                					<div class="col-sm-6">
+		                						<label>First Name *</label>
+		                						<input type="text" name="firstname"   value="{{this.firstname}}" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+
+		                					<div class="col-sm-6">
+		                						<label>Last Name *</label>
+		                						<input type="text" name="lastname"  value="{{this.lastname}}" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+		                				</div><!-- End .row -->
+
+	            						<label>Home Address</label>
+	            						<input type="text" name="address"  value="{{this.Address}}" class="form-control">
+
+	            						<label>Country *</label>
+	            						<input type="text" name="country"  value="{{this.country}}" class="form-control" required>
+
+	            						
+	            						
+		                						<label>Town / City *</label>
+		                						<input type="text" name="city"  value="{{this.city}}" class="form-control" required>
+		                			
+
+		                					
+		                						<label>State *</label>
+		                						<input type="text" name="state"  value="{{this.state}}" class="form-control" required>
+		                					
+
+		                			
+		                					
+		                						<label>Postcode / ZIP *</label>
+		                						<input type="number" name="pincode"  value="{{this.pincode}}" class="form-control" required>
+		                					
+		                					
+		                						<label>Phone *</label>
+		                						<input type="tel" name="phone"  value="{{this.phone}}" class="form-control" required>
+		                      
+								             					
+
+	                				
+	        							{{!-- <div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="checkout-create-acc">
+											<label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
+										</div><!-- End .custom-checkbox --> --}}
+
+										{{!-- <div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="checkout-diff-address">
+											<label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
+										</div><!-- End .custom-checkbox --> --}}
+
+	                					{{!-- <label>Order notes (optional)</label>
+	        							<textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea> --}}
+		                		</div><!-- End .col-lg-9 -->
+				
+								{{/with}}
+							
+		                		<aside class="col-lg-3">
+		                			<div class="summary">
+		                				<h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+		                				<table class="table table-summary">
+
+		                					<thead>
+											
+		                						<tr>
+		                							<th>product</th>
+													<th>Quantity</th>
+													
+		                							<th>Total</th>
+		                						</tr>
+		                					</thead>
+
+		                					<tbody>
+													{{#each cartDetails}}
+		                						<tr>
+		                							<td><a href="/productdetails/{{this.id}}">{{this.productName}}</a></td>
+													<td>{{this.quantity}} Piece X {{this.price}} X {{this.daysOfRent}}</td>
+												
+		                							<td>{{this.total}}</td>
+		                						</tr>
+												{{/each}}
+
+		                						
+		                						<tr class="summary-subtotal">
+		                							<td>Subtotal:</td>
+		                							<td>{{totalPrice}}</td>
+		                						</tr><!-- End .summary-subtotal -->
+		                						<tr>
+													
+		                							<td>Shipping:</td>
+		                							<td>Free shipping</td>
+		                						</tr>
+		                						<tr class="summary-total">
+		                							<td>Total:</td>
+		                							<td>{{grandTotal}}</td>
+		                						</tr><!-- End .summary-total -->
+		                					</tbody>
+		                				</table><!-- End .table table-summary -->
+                                  {{#with couponData }}
+						         <h5>coupon {{this.couponCode}}</h5>
+								 <input type="" name="coupon"  value="{{this.couponCode}}" class="form-control" required>
+            				      {{/with}}  
+		                				{{!-- <div class="accordion-summary" id="accordion-payment">
+										    <div class="card">
+										        <div class="card-header" id="heading-1">
+										            <h2 class="card-title">
+										                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+										                    Direct bank transfer
+										                </a>
+										            </h2>
+										        </div><!-- End .card-header -->
+										        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
+										            <div class="card-body">
+										                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
+														<input type="hidden" value="onlinePay" name="payment">
+														<input class="form-check-input" type="radio" name="paymentMethod"  >
+                                                          <label class="form-check-label" for="payment">payment</label>
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->
+										    <div class="card">
+										        <div class="card-header" id="heading-2">
+										            <h2 class="card-title">
+										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+										                    Check payments
+										                </a>
+										            </h2>
+													<input type="hidden" value="COD" name="payment" > 
+										        </div><!-- End .card-header -->
+										        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
+										            <div class="card-body">
+										                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->
+										</div><!-- End .accordion --> --}}
+						     				<select name="payment">
+                                            <option value="onlinePay">Online Payment</option>
+                                            <option value="COD">Cash on Delivery</option>
+                                            </select>
+
+		                				<button  id="rzp-button1" class="btn btn-outline-primary-2 btn-order btn-block">
+		                					<span class="btn-text">Place Order</span>
+		                					<span class="btn-hover-text">Proceed to Checkout</span>
+		                				</button>
+		                			</div><!-- End .summary -->
+		                		</aside><!-- End .col-lg-3 -->
+		                	</div><!-- End .row -->
+            			</form>
+						{{else}}
+                         <form action="/placeOrder" method="post" >
+		                	<div class="row">
+								
+								
+		                		<div class="col-lg-9">
+		                			<h2 class="checkout-title">Billing Details</h2><!-- End .checkout-title -->
+		                				<div class="row">
+		                					<div class="col-sm-6">
+		                						<label>First Name *</label>
+		                						<input type="text" name="firstname"   value="{{this.firstname}}" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+
+		                					<div class="col-sm-6">
+		                						<label>Last Name *</label>
+		                						<input type="text" name="lastname"  value="{{this.lastname}}" class="form-control" required>
+		                					</div><!-- End .col-sm-6 -->
+		                				</div><!-- End .row -->
+
+	            						<label>Home Address</label>
+	            						<input type="text" name="address"  value="{{this.Address}}" class="form-control">
+
+	            						<label>Country *</label>
+	            						<input type="text" name="country"  value="{{this.country}}" class="form-control" required>
+
+	            						
+	            						
+		                						<label>Town / City *</label>
+		                						<input type="text" name="city"  value="{{this.city}}" class="form-control" required>
+		                			
+
+		                					
+		                						<label>State *</label>
+		                						<input type="text" name="state"  value="{{this.state}}" class="form-control" required>
+		                					
+
+		                			
+		                					
+		                						<label>Postcode / ZIP *</label>
+		                						<input type="number" name="pincode"  value="{{this.pincode}}" class="form-control" required>
+		                					
+		                					
+		                						<label>Phone *</label>
+		                						<input type="tel" name="phone"  value="{{this.phone}}" class="form-control" required>
+		                      
+								             					
+
+	                				
+	        							{{!-- <div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="checkout-create-acc">
+											<label class="custom-control-label" for="checkout-create-acc">Create an account?</label>
+										</div><!-- End .custom-checkbox --> --}}
+
+										{{!-- <div class="custom-control custom-checkbox">
+											<input type="checkbox" class="custom-control-input" id="checkout-diff-address">
+											<label class="custom-control-label" for="checkout-diff-address">Ship to a different address?</label>
+										</div><!-- End .custom-checkbox --> --}}
+
+	                					{{!-- <label>Order notes (optional)</label>
+	        							<textarea class="form-control" cols="30" rows="4" placeholder="Notes about your order, e.g. special notes for delivery"></textarea> --}}
+		                		</div><!-- End .col-lg-9 -->
+				
+								
+							
+		                		<aside class="col-lg-3">
+		                			<div class="summary">
+		                				<h3 class="summary-title">Your Order</h3><!-- End .summary-title -->
+
+		                				<table class="table table-summary">
+
+		                					<thead>
+											
+		                						<tr>
+		                							<th>product</th>
+													<th>Quantity</th>
+													
+		                							<th>Total</th>
+		                						</tr>
+		                					</thead>
+
+		                					<tbody>
+													{{#each cartDetails}}
+		                						<tr>
+		                							<td><a href="/productdetails/{{this.id}}">{{this.productName}}</a></td>
+													<td>{{this.quantity}} Piece X {{this.price}} X {{this.daysOfRent}}</td>
+												
+		                							<td>{{this.total}}</td>
+		                						</tr>
+												{{/each}}
+
+		                						
+		                						<tr class="summary-subtotal">
+		                							<td>Subtotal:</td>
+		                							<td>{{totalPrice}}</td>
+		                						</tr><!-- End .summary-subtotal -->
+												<tr><td>
+
+	                               {{#with couponData }}
+						          <label for="">coupon applied </label></td>
+								<td> <input type="text" name="coupon"  value="{{this.couponCode}}" class="form-control" required></td>
+            				    {{/with}} 
+
+												</tr>
+											
+		                						<tr>
+													
+		                							<td>Shipping:</td>
+		                							<td>Free shipping</td>
+		                						</tr>
+		                						<tr class="summary-total">
+		                							<td>Total:</td>
+		                							<td>{{grandTotal}}</td>
+		                						</tr><!-- End .summary-total -->
+		                					</tbody>
+		                				</table><!-- End .table table-summary -->
+
+		                				{{!-- <div class="accordion-summary" id="accordion-payment">
+										   <div class="card">
+										        <div class="card-header" id="heading-1">
+										            <h2 class="card-title">
+										                <a role="button" data-toggle="collapse" href="#collapse-1" aria-expanded="true" aria-controls="collapse-1">
+										                    Direct bank transfer
+										                </a>
+										            </h2>
+										        </div><!-- End .card-header -->
+										        <div id="collapse-1" class="collapse show" aria-labelledby="heading-1" data-parent="#accordion-payment">
+										            <div class="card-body">
+										                Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order will not be shipped until the funds have cleared in our account.
+														<input type="hidden" value="onlinePay" name="payment">
+														<input class="form-check-input" type="radio" name="paymentMethod"  >
+                                                          <label class="form-check-label" for="payment">payment</label>
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->
+										    <div class="card">
+										        <div class="card-header" id="heading-2">
+										            <h2 class="card-title">
+										                <a class="collapsed" role="button" data-toggle="collapse" href="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
+										                    Check payments
+										                </a>
+										            </h2>
+													<input type="hidden" value="COD" name="payment" > 
+										        </div><!-- End .card-header -->
+										        <div id="collapse-2" class="collapse" aria-labelledby="heading-2" data-parent="#accordion-payment">
+										            <div class="card-body">
+										                Ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. 
+										            </div><!-- End .card-body -->
+										        </div><!-- End .collapse -->
+										    </div><!-- End .card -->
+
+
+										</div><!-- End .accordion --> --}}
+										<select name="payment">
+                                        <option value="onlinePay">Online Payment</option>
+                                        <option value="COD">Cash on Delivery</option>
+                                         </select>
+
+		                				<button  id="rzp-button1" class="btn btn-outline-primary-2 btn-order btn-block">
+		                					<span id="rzp-button1" class="btn-text">Place Order</span>
+		                					<span  id="rzp-button1" class="btn-hover-text">Proceed to Checkout</span>
+		                				</button>
+		                			</div><!-- End .summary -->
+		                		</aside><!-- End .col-lg-3 -->
+		                	</div><!-- End .row -->
+            			</form>
+
+						{{/if}}
+			
+
+							
+						
+						
+						
+					
+	                </div><!-- End .container -->
+                </div><!-- End .checkout -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+       
+    </div><!-- End .page-wrapper -->
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- <script>
+var orderId ;
+$(document).ready(function(){
+    var settings = {
+  "url": "/create/orderId",
+  "method": "POST",
+  "timeout": 0,
+  "headers": {
+    "Content-Type": "application/json"
+  },
+  "data": JSON.stringify({
+    "amount": "5000"
+  }),
+};
+
+//creates new orderId everytime
+$.ajax(settings).done(function (response) {
+
+  orderId=response.orderId;
+  console.log(orderId);
+  $("button").show();
+});
+});
+
+   
+document.getElementById('rzp-button1').onclick = function(e){
+	var options = {
+    "key": "rzp_test_xKJur4lyLcX0ZO", // Enter the Key ID generated from the Dashboard
+    "amount": "50000", // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    "currency": "INR",
+    "name": "Rento tools",
+    "description": "Test Transaction",
+    "image": "https://example.com/your_logo",
+    "order_id":order.orderId, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    "handler": function (response){
+        alert(response.razorpay_payment_id);
+        alert(response.razorpay_order_id);
+        alert(response.razorpay_signature)
+    },
+
+
+	$.ajax(settings).done(function(response){
+		alert(JSON.stringify(response))
+	});
+    "theme": {
+        "color": "#3399cc"
+    }
+	};
+	var rzp1 = new Razorpay(options);
+rzp1.on('payment.failed', function (response){
+        alert(response.error.code);
+        alert(response.error.description);
+        alert(response.error.source);
+        alert(response.error.step);
+        alert(response.error.reason);
+        alert(response.error.metadata.order_id);
+        alert(response.error.metadata.payment_id);
+});
+    rzp1.open();
+    e.preventDefault();
+}
+</script> --}}
+
+{{!-- <form action="/payment/success" method="POST">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"
+          data-key="YOUR_KEY_ID"
+          data-amount="{{orderAmount * 100}}"
+          data-currency="INR"
+          data-name="Your Company Name"
+          data-description="Order #{{orderId}}"
+          data-image="https://your-company-logo.png"
+          data-order_id="{{razorpayOrderId}}"
+          data-prefill.name="{{user.name}}"
+          data-prefill.email="{{user.email}}"
+          data-theme.color="#F37254"></script>
+  <input type="hidden" name="orderId" value="{{orderId}}">
+  <button type="submit">Pay now</button>
+</form> --}}

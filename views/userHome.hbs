@@ -1,0 +1,249 @@
+
+<div class="page-wrapper">
+
+
+
+    <main class="main">
+   <div class="container banner-container">
+                <div class="row">
+                    {{#each (limit categories 4)}}
+                    <div class="col-lg-6 col-md-6 col-sm-6 banner-lg">
+                        <a href="/getcategory/{{this.id}}">
+                            <img src="{{this.image}}">
+                        </a>
+                        <div class="banner-content">
+                            <div class="title">
+                                <a href="/getcategory/{{this.id}}">{{this.description}}</a>
+                            </div>
+                            <div class="content">
+                                <a href="/getcategory/{{this.id}}">
+                                    <h3 class="highlight">{{this.name}}</h3>
+                                    <h4>{{this.description}}</h4>
+                                </a>
+                            </div>
+                            <div class="action">
+                                <a href="/getcategory/{{this.id}}">discover now</a>
+                            </div>
+                        </div>
+                    </div>
+                     {{/each}}
+                </div>
+            </div>
+
+
+        {{!-- <div class="row">
+            <div class="col-lg-8 col-12">
+                <div class="intro-slider-container mt-2">
+                    <div class="intro-slider owl-carousel owl-theme owl-nav-inside owl-light" data-toggle="owl"
+                        data-owl-options='{
+                                    "dots": true,
+                                    "nav": true, 
+                                    "responsive": {
+                                        "1200": {
+                                            "nav": true,
+                                            "dots": true
+                                        }
+                                    }
+                                }'>
+                        <div class="intro-slide banner-lg"
+                            style="background-image: url(assets/images/demos/demo-22/slider/slide-1.jpg);">
+                            <div class="intro">
+                                <div class="title">
+                                    <a>deal of the day</a>
+                                </div>
+                                <div class="content">
+                
+                                    <h4>heavy duty deals</h4>
+                                </div>
+                                <div class="action">
+                                    <a href="/category">discover now</a>
+                                </div>
+                            </div>
+                        </div><!-- End .intro-slide -->
+
+                        <div class="intro-slide banner-lg"
+                            style="background-image: url(assets/images/demos/demo-22/slider/slide-2.jpg);">
+                            <div class="intro">
+                                <div class="title">
+                                    <a>clearance</a>
+                                </div>
+                                <div class="content">
+                                    <h3>power tools<br>up to <span>30% off</span></h3>
+                                </div>
+                                <div class="action">
+                                    <a href="/viewallproducts">discover now</a>
+                                </div>
+                            </div>
+                        </div><!-- End .intro-slide -->
+
+
+
+                    </div><!-- End .intro-slider owl-carousel owl-simple -->
+
+                    <span class="slider-loader"></span><!-- End .slider-loader -->
+                </div><!-- End .intro-slider-container -->
+            </div>
+            <div class="col-lg-4 banner">
+                {{#each (limit categories 3)}}
+                <div class="col-12" style="background-image: url({{this.image}})">
+                    <div class="intro">
+                        <div class="title text-white">
+                            <h3>{{this.name}}</h3>
+                        </div>
+                        <div class="content">
+                            <h3>collect your </h3>
+                            <h3 class="highlight">&nbsp;tools</h3>
+                        </div>
+                        <div class="action">
+                            <a href="/getcategory/{{this.id}}">shop now</a>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+              
+            </div>
+        </div> --}}
+
+
+        <div class="container popular">
+            <hr class="mb-5">
+
+            <div class="section-title">
+                <div>
+                    <p class="title"><span>Latest Products</span></p>
+                </div>
+
+                <a class="link" href="#">See All Products</a>
+            </div>
+
+            <div class="row products">
+                {{#each (limit item 5 )}}
+
+                <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
+                    <div class="product product-3 text-center">
+                        <figure class="product-media">
+                             <span class="product-label label-new">New</span>
+                            <a href="/productdetails/{{this.id}}">
+                                <img src="{{this.image}}" alt="Product image" style="width: 215px;  height: 209px;"
+                                    class="product-image">
+                            </a>
+
+                            <div class="product-action-vertical">
+                               
+                             <button data-item-id="{{this.id}}" class="add-to-wishlist btn-product-icon btn-wishlist btn-expandable"><a><span>add to
+                                            wishlist</span><span>likes ({{ this.wishList.length }})</span></a></button>
+
+                            </div><!-- End .product-action-vertical -->
+                        </figure><!-- End .product-media -->
+
+                        <div class="product-body">
+                            <div class="product-cat">
+                                <a href="/productdetails/{{this.id}}">{{this.name}}</a>
+                            </div><!-- End .product-cat -->
+                            <h3 class="product-title"><a href="/productdetails/{{this.id}}">{{this.brand}}</a></h3>
+                            <!-- End .product-title -->
+                            <div class="product-price">
+                                <span class="new-price">{{this.price}}</span>
+
+                            </div><!-- End .product-price -->
+                        </div><!-- End .product-body -->
+
+                        <div class="product-footer">
+                            <div class="product-action" style="">
+                                {{!-- <form action="/addtocart/{{this.id}}" method="post"> --}}
+                                    <a href="/productdetails/{{this.id}}" class="btn-product btn-cart"
+                                        type="submit"></a>
+
+                            </div><!-- End .product-action -->
+                        </div><!-- End .product-footer -->
+                    </div><!-- End .product -->
+                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+
+                {{/each}}
+            </div><!-- End .row -->
+
+        </div>
+    <div class="container bannerad">
+                <div class="banner-lg"  style="background-image: url(assets/images/demos/demo-22/bannerad/background.jpg);">
+                    <div class="price">
+                        <h4 class="highlight">from</h3><h3>$39</h3><sup class="highlight">,99</sup>
+                    </div>
+                    <div class="content">
+                        <h4>woodworking tools</h4>
+                        <h3>from top rated brands</h3>
+                        <div class="action">
+                            <a href="/getAllCategory">discover now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        
+             
+        <div class="container popular">
+                <hr class="mb-5">
+
+                <div class="section-title">
+                    <div><p class="title"><span>Popular Products</span></p></div>
+                    
+                    <a class="link" href="#">See All Products</a>
+                </div>
+
+                <div class="row products">
+                    {{#each items }}
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
+                        <div class="product product-3 text-center">
+                            <figure class="product-media">
+                               
+                                <span class="product-label label-sale">Sale</span>
+                                <a href="/productdetails/{{this.id}}">
+                                    <img src="{{this.image}}" alt="Product image" class="product-image">
+                                </a>
+
+                                <div class="product-action-vertical">
+                                    <a data-item-id="{{this.id}}" class="add-to-wishlist btn-product-icon btn-wishlist btn-expandable"><span>add to wishlist</span></a>
+                                </div><!-- End .product-action-vertical -->
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="/productdetails/{{this.id}}">Air Tools & Compressors</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="/productdetails/{{this.id}}">Makita XCV11Z</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    <span class="new-price">{{this.price}}</span>
+                                    {{!-- <span class="old-price">Was $330.00</span> --}}
+                                </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+
+                            <div class="product-footer">
+                                
+
+                             
+
+                                <div class="product-action">
+                                    <a href="/productdetails/{{this.id}}" class="btn-product btn-cart" title="Add to cart"></a>
+                                    <a href="/wishlist"  data-item-id="{{this.id}}"  class=" add-to-wishlist  btn-product btn-wishlist" title="add to wishlist"></a>
+                                </div><!-- End .product-action -->
+                            </div><!-- End .product-footer -->
+                        </div><!-- End .product -->
+                    </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+{{/each}}
+                    
+                </div><!-- End .row -->
+            </div>
+
+
+    </main>
+
+
+
+
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+
+
+
+
+</div>
+
+<button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>

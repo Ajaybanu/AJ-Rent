@@ -1,0 +1,104 @@
+
+    <div class="page-wrapper">
+      
+         
+        <main class="main">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav border-0 mb-0">
+                <div class="container d-flex align-items-center">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="/">Home</a></li>
+                        <li class="breadcrumb-item"><a href="#">Products</a></li>
+                      
+                    </ol>
+
+                  
+                </div><!-- End .container -->
+            </nav><!-- End .breadcrumb-nav -->
+
+            <div class="page-content">
+                <div class="container">
+                    <div class="product-details-top">
+                          {{#with data}}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="product-gallery product-gallery-vertical">
+                                   
+                                    <div class="row">
+                                        <figure class="product-main-image">
+                                            <img id="product-zoom" src="/../{{this.image}}" data-zoom-image="assets/images/products/single/1-big.jpg" alt="product image">
+
+                                            <a href="#" id="btn-product-gallery" class="btn-product-gallery">
+                                                <i class="icon-arrows"></i>
+                                            </a>
+                                        </figure><!-- End .product-main-image -->
+
+                                       
+                                    </div><!-- End .row -->
+                                </div><!-- End .product-gallery -->
+                            </div><!-- End .col-md-6 -->
+
+
+
+                            <div class="col-md-6">
+                                <div class="product-details">
+                                    <h1 class="product-title">{{this.name}}</h1><!-- End .product-title -->
+
+                                  
+                                    <div class="product-price">
+                                        {{this.price}}
+                                    </div><!-- End .product-price -->
+
+                                    <div class="product-content">
+                                        <p>{{this.description}} </p>
+                                    </div><!-- End .product-content -->
+
+                                    
+
+                                 
+                                      <form action="/addtocart/{{this.id}}" method="post">
+                                    <div class="details-filter-row details-row-size">
+                                         
+                                        <label for="qty">Quantity:</label>
+                                        <div class="product-details-quantity">
+                                            <input type="number" id="qty" name="quantity" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                        </div><!-- End .product-details-quantity -->
+                                    </div><!-- End .details-filter-row -->
+                                    <div class="details-filter-row details-row-size">
+                                         
+                                        <label for="qty">Days For Rent:</label>
+                                        <div class="product-details-quantity">
+                                            <input type="number" id="days" name="daysofrent" class="form-control" value="1" min="1" max="10" step="1" data-decimals="0" required>
+                                        </div><!-- End .product-details-quantity -->
+                                    </div><!-- End .details-filter-row -->
+
+                                    <div class="product-details-action">
+
+                                     
+                                   <button class="btn-product btn-cart" type="submit"> ADD To Cart </button>
+                                     </form>
+
+                                        <div class="details-action-wrapper">
+                                            <a href="#" class="btn-product btn-wishlist" title="Wishlist"><span>Add to Wishlist</span></a>
+                                            {{!-- <a href="#" class="btn-product btn-compare" title="Compare"><span>Add to Compare</span></a> --}}
+                                        </div><!-- End .details-action-wrapper -->
+                                    </div><!-- End .product-details-action -->
+
+                                
+                                </div><!-- End .product-details -->
+                            </div><!-- End .col-md-6 -->
+                        </div><!-- End .row -->
+                        {{/with}}
+                    </div><!-- End .product-details-top -->
+
+               
+
+                    <h2 class="title text-center mb-4">You May Also Like</h2><!-- End .title text-center -->
+
+                </div><!-- End .container -->
+            </div><!-- End .page-content -->
+        </main><!-- End .main -->
+
+
+    </div><!-- End .page-wrapper -->
+    <button id="scroll-top" title="Back to Top"><i class="icon-arrow-up"></i></button>
+  

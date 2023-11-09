@@ -1,0 +1,25 @@
+   <div class="page-wrapper">
+       
+        <main class="main">
+           
+            <div class="container">
+             {{#if  product_list}} 
+  <div class="row">
+    {{#each product_list}}
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{this.name}}</h5>
+            <p class="card-text">{{this.description}}</p>
+            <p class="card-text">${{this.price}}</p>
+            <img src="/../{{this.image}}" alt="">
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  {{#else}}
+     <div>products are not available</div>
+          {{/if}}
+            </div>
+          </main></div>

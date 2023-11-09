@@ -1,0 +1,31 @@
+<div class="page-wrapper">
+
+
+    <main class="main">
+   <div class="container banner-container">
+                <div class="row">
+                    {{#each category}}
+                    <div class="col-lg-6 col-md-6 col-sm-6 banner-lg">
+                        <a href="/getcategory/{{this.id}}">
+                            <img src="{{this.image}}">
+                        </a>
+                        <div class="banner-content">
+                            <div class="title">
+                                <a href="/getcategory/{{this.id}}">{{this.description}}</a>
+                            </div>
+                            <div class="content">
+                                <a href="/getcategory/{{this.id}}">
+                                    <h3 class="highlight">{{this.name}}</h3>
+                                    <h4>{{this.description}}</h4>
+                                </a>
+                            </div>
+                            <div class="action">
+                                <a href="/getcategory/{{this.id}}">discover now</a>
+                            </div>
+                        </div>
+                    </div>
+                     {{/each}}
+                </div>
+            </div>
+
+            </main></div>

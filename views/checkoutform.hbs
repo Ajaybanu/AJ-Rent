@@ -3,7 +3,7 @@
 
 <div class="page-wrapper">
 
-  <main class="main">
+  <main class="container text-center">
     <div class="page-header text-center" style="background-image: url('assets/images/page-header-bg.jpg')">
       <div class="container">
         <h1 class="page-title">Checkout<span>Shop</span></h1>
@@ -22,8 +22,8 @@
 
 
 
-    <form id="rzp-form" action="/success" method="post">
-      <aside class="col-lg-9">
+    <form id="rzp-form" action="/success" method="post" class="mx-auto" >
+      
         <div class="summary">
           <h3 class="summary-title">Your Order {{order_id}}</h3><!-- End .summary-title -->
 
@@ -75,11 +75,11 @@
             <span id="rzp-button" class="btn-hover-text">Proceed to Checkout</span>
           </button>
         </div><!-- End .summary -->
-      </aside><!-- End .col-lg-3 -->
-
+    
+</form>
   </main>
 </div><!-- End .row -->
-</form>
+
 
 <script>
   const formdata = document.getElementById("rzp-form")
@@ -87,7 +87,7 @@
     e.preventDefault()
   })
   var options = {
-    "key": "rzp_test_kbvBZsVLBZtPhJ",
+    "key": "rzp_test_xKJur4lyLcX0ZO",
     "amount": "{{amount}}",
     "name": "{{name}}",
     "description": "Test Transaction",

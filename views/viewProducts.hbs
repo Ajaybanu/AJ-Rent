@@ -1,0 +1,64 @@
+ <div class="page-wrapper">
+    
+ <main class="main">
+<div class="container popular">
+              
+
+                <div class="section-title">
+                    {{#with category}}
+                    <div><p class="title"><span>Popular {{this.name}}</span></p></div>
+                    {{/with}}
+                    <a class="link" href="#">See All Products</a>
+                </div>
+
+                
+             <div class="row products">
+                {{#each items}}
+
+                <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
+                    <div class="product product-3 text-center">
+                        <figure class="product-media">
+                             <span class="product-label label-new">New</span>
+                            <a href="/productdetails/{{this.id}}">
+                                <img src="/../{{this.image}}" alt="Product image" style="width: 215px;  height: 209px;"
+                                    class="product-image">
+                            </a>
+
+                            <div class="product-action-vertical">
+                               
+                             <button data-item-id="{{this.id}}" class="add-to-wishlist btn-product-icon btn-wishlist btn-expandable"><a><span>add to
+                                            wishlist</span><span>likes ({{ this.wishList.length }})</span></a></button>
+
+                            </div><!-- End .product-action-vertical -->
+                        </figure><!-- End .product-media -->
+
+                        <div class="product-body">
+                            <div class="product-cat">
+                                <a href="/productdetails/{{this.id}}">{{this.name}}</a>
+                            </div><!-- End .product-cat -->
+                            <h3 class="product-title"><a href="/productdetails/{{this.id}}">{{this.brand}}</a></h3>
+                            <!-- End .product-title -->
+                            <div class="product-price">
+                                <span class="new-price">{{this.price}}</span>
+
+                            </div><!-- End .product-price -->
+                            <div class="product-price">
+                                <span class="new-price">{{this.countInStock}}</span>
+
+                            </div><!-- End .product-price -->
+                        </div><!-- End .product-body -->
+
+                        <div class="product-footer">
+                                <div class="product-action">
+                                    <a href="/productdetails/{{this.id}}" class="btn-product btn-cart" title="Add to cart"></a>
+                                    <a href="/wishlist"  data-item-id="{{this.id}}"  class=" add-to-wishlist  btn-product btn-wishlist" title="add to wishlist"></a>
+                                </div><!-- End .product-action -->
+                   
+                        </div><!-- End .product -->
+                </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+              </div>
+                {{/each}}
+            </div><!-- End .row -->
+</div>
+</main>
+</div>

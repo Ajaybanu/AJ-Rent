@@ -1,0 +1,83 @@
+<div class="page-wrapper">
+                    {{#with product}}
+								    	<form action="/admin/updateproduct/{{this.id}}" method="post"  enctype="multipart/form-data" >
+			                				<div class="row">
+			                					<div class="col-sm-6">
+			                						<label>Product Name *</label>
+			                						<input type="text" value="{{this.name}}" name="name" class="form-control" required>
+			                					</div><!-- End .col-sm-6 -->
+
+			                					<div class="col-sm-6">
+			                						<label>Category Name *</label>
+			                						<input type="text" name="category"  value="{{this.category}}"class="form-control" required>
+			                					</div><!-- End .col-sm-6 -->
+												<div class="mb-3">
+                                    <label for="image" class="form-label">Select Image</label>
+                                    <input class="form-control form-control-lg" type="file" name="image"
+                                        class="form-control form control-lg" />
+                                    <img src="/{{this.image}}" width="100" class="img-thumbnail mt-1">
+                                </div>
+                                <input type="hidden" name="old_image" value="{{this.image}}">
+
+                                                 {{!-- <div class="form-group col-md-6"> 
+                                         <input type="file" name="image" placeholder="select an image" class="form-control" id="inputGroupFile02">
+                                         <label class="input-group-text"  for="inputGroupFile02">Upload</label>
+                                         <input  type="hidden" name="oldImage" value="./public/images/uploads/{{this.image}}" class="form-control" id="inputGroupFile02">
+                                         </div> --}}
+                                                <div class="col-sm-6">
+                                                  <label>Brand Name *</label>
+			                						<input type="text" name="brand" value="{{this.brand}}" class="form-control" required>  
+                                                </div>
+			                				</div><!-- End .row -->
+		            						<label>Description</label>
+		            						<input type="text" class="form-control"value="{{this.description}}" name="description" required>
+		                					<label>Rich Description</label>
+		        							<input type="text" class="form-control" value="{{this.richDescription}}" name="richDescription" required>
+                                             <label>isFeatured</label>
+		        							<input type="text" class="form-control" value="{{this.isFeatured}}" name="isFeatuered" required>                                             
+		            						<label>Price</label>
+		        							<input type="number" name="price" value="{{this.price}}" class="form-control" required>
+                                              <label>Product Count</label>
+		        							<input type="number" class="form-control" value="{{this.countInStock}}" name="countInStock" required>                              
+		                					<button type="submit" class="btn btn-outline-primary-2">
+			                					<span>SAVE CHANGES</span>
+			            						<i class="icon-long-arrow-right"></i>
+			                				</button>
+			                			</form>
+                                        {{/with}}
+								    </div><!-- .End .tab-pane -->
+
+
+	{{!-- <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
+    <script>
+     let form= document.getElementById('form')
+     form.addEventListener("submit",(e)=>{
+      e.preventDefault()
+      let url = "/admin/updateproduct/{{this.id}}"
+      let formData = new FormData(form)
+      let position=[]
+      for(i=0;i<4;i++){
+        if(document.getElementById(i).value)
+        position.push(i)
+      }
+      formData.append("position", JSON.stringify(position))
+      axios.put(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
+     }).then(response=>{
+      if(response.data.msg_login){
+        location.href="/admin"
+    }
+    else{
+if(response){
+      location.href= "/admin/product"
+      }
+    }
+      
+     })
+     })
+     
+     
+    </script> --}}

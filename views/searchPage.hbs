@@ -1,0 +1,117 @@
+ <div class="page-wrapper">
+    
+ <main class="main">
+<div class="container popular">
+              
+
+                <div class="section-title">
+                    <div><p class="title"><span>Popular Products</span></p></div>
+                    
+                    <a class="link" href="#">See All Products</a>
+                </div>
+
+                <div class="row products">
+
+                    {{#if data}}
+                    {{#each data}}
+                    <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
+                        
+                        <div class="product product-3 text-center">
+                            <figure class="product-media">
+                                
+                                <a href="/productdetails/{{this.id}}">
+                                    <img src="/../{{this.image}}" alt="Product image" class="product-image">
+                                </a>
+
+
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="/productdetails/{{this.id}}">{{this.discription}}</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="/productdetails/{{this.id}}">{{this.name}}</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    <span class="new-price">{{this.price}} per day</span>
+                                    {{!-- <span class="old-price">Was 200 perday</span> --}}
+                                </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+
+                            <div class="product-footer">
+                                <div class="ratings-container">
+                                  
+                                   
+                               
+
+                               
+                                    <div class="row">
+                                      <a href="/admin/edit/{{this.id}}" class="text-success"><i class="fas fa-edit fa-lg mx-1"></i></a>
+                                      <a href="/admin/delete/{{this.id}}" class="text-danger"><i class="fas fa-trash fa-lg mx-1"></i></a>
+                                      {{!-- <a href="" class="btn-product btn-cart" title="Edit"></a> --}}
+                                    </div>
+                              
+                            </div><!-- End .product-footer -->
+                        </div><!-- End .product -->
+                        
+                    </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                    
+                     
+                </div><!-- End .row -->
+               {{/each}}
+{{else if cat}}
+
+{{#with cat}}
+llll
+ <div class="col-6 col-md-4 col-lg-3 col-xl-5col">
+                        
+                        <div class="product product-3 text-center">
+                            <figure class="product-media">
+                                
+                                <a href="/productdetails/{{this.id}}">
+                                    <img src="/../{{this.image}}" alt="Product image" class="product-image">
+                                </a>
+                                 <div class="product-action-vertical">
+                               
+                             <button data-item-id="{{this.id}}" class="add-to-wishlist btn-product-icon btn-wishlist btn-expandable"><a><span>add to
+                                            wishlist</span><span>likes ({{ this.wishList.length }})</span></a></button>
+
+                            </div><!-- End .product-action-vertical -->
+
+
+                            </figure><!-- End .product-media -->
+
+                            <div class="product-body">
+                                <div class="product-cat">
+                                    <a href="/productdetails/{{this.id}}">{{this.discription}}</a>
+                                </div><!-- End .product-cat -->
+                                <h3 class="product-title"><a href="/productdetails/{{this.id}}">{{this.name}}</a></h3><!-- End .product-title -->
+                                <div class="product-price">
+                                    <span class="new-price">{{this.price}} per day</span>
+                                    {{!-- <span class="old-price">Was 200 perday</span> --}}
+                                </div><!-- End .product-price -->
+                            </div><!-- End .product-body -->
+
+                             <div class="product-footer">
+                            <div class="product-action" style="">
+                                {{!-- <form action="/addtocart/{{this.id}}" method="post"> --}}
+                                    <a href="/productdetails/{{this.id}}" class="btn-product btn-cart"
+                                        type="submit"></a>
+
+                            </div><!-- End .product-action -->
+                        </div><!-- End .product-footer -->
+                        
+                    </div><!-- End .col-sm-6 col-md-4 col-lg-3 -->
+                    
+                     
+                </div><!-- End .row -->
+
+{{/with}}
+{{else }}
+
+<h1>not founnd</h1>
+               {{/if}}
+
+            </div>
+</div>
+</main>
+</div>
